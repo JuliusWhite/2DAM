@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         var hfinal: Long = System.currentTimeMillis();
         var t:Long= ((hfinal-hInicial) / 1000) % 60;
         Log.d("Estado","Tiempo transcurrido: " + t + "s.")
+        var txtosaludo: TextView = findViewById(R.id.txtsaludo)
+        txtosaludo.text = t.toString() + " seconds"
     }
 
     override fun onRestart() {
@@ -41,11 +43,5 @@ class MainActivity : AppCompatActivity() {
         super.onResume();
         Log.d("Estado","onResume")
     }
-
-    fun main(){
-        println("Hello people")
-    }
-
-
 
 }
