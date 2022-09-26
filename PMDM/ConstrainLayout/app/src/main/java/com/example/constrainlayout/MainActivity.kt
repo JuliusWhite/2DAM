@@ -1,6 +1,6 @@
-package com.example.myapplication
+package com.example.constrainlayout
 
-import androidx.appcompat.app.AppCompatActivity
+import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -26,13 +26,14 @@ class MainActivity : AppCompatActivity() {
         var hfinal: Long = System.currentTimeMillis();
         var t:Long= ((hfinal-hInicial) / 1000) % 60;
         Log.d("Estado","Tiempo transcurrido: " + t + "s.")
-        var txtosaludo: TextView = findViewById(R.id.orientation)
+        var txtosaludo: TextView = findViewById(R.id.time)
         txtosaludo.text = t.toString() + " seconds"
     }
 
     override fun onRestart() {
         super.onRestart();
         Log.d("Estado","onRestart");
+
     }
 
     override fun onDestroy(){
@@ -44,5 +45,4 @@ class MainActivity : AppCompatActivity() {
         super.onResume();
         Log.d("Estado","onResume")
     }
-
 }
