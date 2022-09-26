@@ -221,3 +221,13 @@ l3 = filter(lambda n : n % 2 == 0, l)
 l5 = [n**2 for n in l]
 
 l6 = [n for n in l if n % 2 == 0]
+
+x = [0, 1, 2, 3]
+
+y = ['a', 'b', 'c', 'd']
+
+n = [c * n for n in x
+     for c in y
+     if n > 1]
+
+print(n)
