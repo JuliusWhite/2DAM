@@ -97,3 +97,76 @@ def campanha_d(names, pos):
 
 campanha_c((("F", "Tamara"), ("M", "Julián"), ("M", "Pedro")))
 campanha_d((("F", "Tamara"), ("M", "Julián"), ("M", "Pedro")),2)
+
+nums = [1, 3, 6, 7]
+
+# 5.- Dada una lista de números enteros, escribir una función que:
+
+# a) Devuelva una lista con todos los que sean primos.
+
+def primeNum(nums):
+    for n in nums:
+        if (n == 1):
+            print(n)
+        for i in range (2, n):
+            if(n % i == 0):
+                break
+            else:
+                print(n)
+                break
+
+primeNum(nums)
+
+# b) Devuelva la sumatoria y el promedio de los valores.
+
+def sumAndMed(num):
+    sum = 0
+    for n in nums:
+        sum += n
+    print("The sum of the list is:", sum, "and its average is:", (sum/len(nums)))
+
+sumAndMed(nums)
+
+# c) Devuelva una lista con el factorial de cada uno de esos números.
+
+def fact(nums):
+    toret = []
+    for n in nums:
+        nFact = math.factorial(n)
+        toret.append(nFact)
+    print(toret)
+
+fact(nums)
+
+
+# 6.- Dada una lista de números enteros y un entero k, escribir una función que:
+
+# a) Devuelva tres listas, una con los menores, otra con los mayores y otra con los iguales a k.
+
+def retLists(nums, k):
+    lt = []
+    eq = []
+    gt = []
+    for i in nums:
+        if(i < k):
+            lt.append(i)
+        elif(i > k):
+            gt.append(i)
+        else:
+            eq.append(k)
+    print("Numbers little than", k, ":",lt)
+    print("Numbers equals to", k, ":", eq)
+    print("Numbers greater than", k, ":",gt)
+
+retLists(nums, 3)
+
+# b) Devuelva una lista con aquellos que son múltiplos de k.
+
+def retMulList(nums, k):
+    toret = []
+    for i in nums:
+        if(k % i == 0):
+            toret.append(i)
+    print("The multiples of", k, "in the list are:", toret)
+
+retMulList(nums, 6)
