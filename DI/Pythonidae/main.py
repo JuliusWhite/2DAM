@@ -1,4 +1,4 @@
-
+import math
 tupla1 = (1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 10)
 tupla2 = (1, 2, 2, 7, 4, 6, 5, 8, 9, 10)
 tupla3 = ()
@@ -103,19 +103,32 @@ nums = [1, 3, 6, 7]
 # 5.- Dada una lista de números enteros, escribir una función que:
 
 # a) Devuelva una lista con todos los que sean primos.
+def prime(n):
+    if (n == 1):
+        return True
+    for i in range(2, n):
+        if (n % i == 0):
+            return False
+        else:
+            return True
+
+l_pri = [n for n in nums if prime(n)]
+print(l_pri)
 
 def primeNum(nums):
+    toret = []
     for n in nums:
         if (n == 1):
-            print(n)
+            toret.append(n)
         for i in range (2, n):
             if(n % i == 0):
                 break
             else:
-                print(n)
+                toret.append(n)
                 break
+    return toret
 
-primeNum(nums)
+print(primeNum(nums))
 
 # b) Devuelva la sumatoria y el promedio de los valores.
 
@@ -128,6 +141,9 @@ def sumAndMed(num):
 sumAndMed(nums)
 
 # c) Devuelva una lista con el factorial de cada uno de esos números.
+
+l_fact = [math.factorial(n) for n in nums]
+print(l_fact)
 
 def fact(nums):
     toret = []
@@ -170,3 +186,38 @@ def retMulList(nums, k):
     print("The multiples of", k, "in the list are:", toret)
 
 retMulList(nums, 6)
+
+
+def saludar (lingua):
+    def saludar_gl():
+       print("Ola")
+    def saludar_es():
+        print("Hola")
+    def saludar_en():
+       print("Hello")
+    lingua_funcion = {"es" : saludar_es,
+                      "gl" : saludar_gl,
+                      "en" : saludar_en
+    }
+    return lingua_funcion [lingua]
+
+f = saludar ("en")
+f()
+saludar("gl")()
+
+def numero_par (n):
+    return n % 2 == 0
+
+print(numero_par(5))
+
+l = [1, 2 ,3, 4, 5]
+
+l2 = filter (numero_par, l)
+for item in l2:
+    print(item)
+
+l3 = filter(lambda n : n % 2 == 0, l)
+
+l5 = [n**2 for n in l]
+
+l6 = [n for n in l if n % 2 == 0]
