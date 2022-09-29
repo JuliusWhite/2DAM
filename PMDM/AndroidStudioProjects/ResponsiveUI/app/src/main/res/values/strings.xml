@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Responsive UI</string>
+    <string name="avatar_image"></string>
 </resources>
