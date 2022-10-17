@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity() {
         val tvText = randomInt.toString()
 
         resultImage.setImageResource (drawableImage)
-        roll_text.text = "Dice Roll OS $tvText"
-        Toast.makeText(this, "Dice Roll OS $tvText", Toast.LENGTH_SHORT).show()
+        roll_text.text = "Dice Roll is $tvText"
+        Toast.makeText(this, "Dice Roll is $tvText", Toast.LENGTH_SHORT).show()
 
 
     }
