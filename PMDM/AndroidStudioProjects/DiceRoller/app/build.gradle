@@ -14,6 +14,9 @@ android {
         versionCode 1
         versionName "1.0"
 
+        /*set the Drawable Binding*/
+        vectorDrawables. useSupportLibrary = true
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
