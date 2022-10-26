@@ -1,16 +1,24 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton
+from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget
+from Colors import Color
 
 
-class MainWindow(QMainWindow):
+class FiestraPrincipal(QMainWindow):
+
     def __init__(self):
         super().__init__()
+        self.setWindowTitle("Exemplo QVBoxLayout")
 
-        self.setWindowTitle("My first window with PyQt6")
+        caixaV = QVBoxLayout()
 
+        caixaV.addWidget(Color("red"))
+
+        widget = QWidget()
+        widget.setLayout(caixaV)
+        self.setCentralWidget(widget)
         self.show()
 
-
-aplication = QApplication(sys.argv)
-window = MainWindow()
-aplication.exec()
+if __name__ == "__main__":
+    aplicacion = QApplication(sys.argv)
+    fiestra = FiestraPrincipal()
+    aplicacion.exec()
