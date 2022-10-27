@@ -12,6 +12,8 @@ class FiestraPrincipal(QMainWindow):
         caixaV = QVBoxLayout()
 
         caixaV.addWidget(Color("red"))
+        caixaV.addWidget(Color("blue"))
+        caixaV.addWidget(Color("black"))
 
         widget = QWidget()
         widget.setLayout(caixaV)
