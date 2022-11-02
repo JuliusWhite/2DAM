@@ -30,10 +30,6 @@ class FiestraPrincipal(QMainWindow):
         self.setCentralWidget(widget)
         self.show()
 
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
-
 if __name__ == "__main__":
     aplicacion = QApplication(sys.argv)
     fiestra = FiestraPrincipal()
