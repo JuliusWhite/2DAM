@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/grey"
     tools:context=".MainActivity">
 
     <Button
@@ -59,8 +59,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499"
-        app:srcCompat="@drawable/whitecircle"
-        tools:srcCompat="@drawable/whitecircle" />
+        app:srcCompat="@drawable/grey_citcle"
+        tools:srcCompat="@drawable/grey_citcle" />
 
     <TextView
         android:id="@+id/greeting_txt"
@@ -69,7 +69,7 @@
         android:elevation="1000dp"
         android:fontFamily="monospace"
         android:text="@string/start"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
