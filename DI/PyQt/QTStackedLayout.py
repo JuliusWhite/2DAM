@@ -14,6 +14,19 @@ class Example(QMainWindow):
 
         vBox = QVBoxLayout()
         hBox = QHBoxLayout()
+
+        redBtn = QPushButton("Red")
+        redBtn.pressed.connect(self.activateCard1)
+        hBox.addWidget(redBtn)
+
+        blueBtn = QPushButton("Blue")
+        blueBtn.pressed.connect(self.activateCard2)
+        hBox.addWidget(blueBtn)
+
+        greenBtn = QPushButton("Green")
+        greenBtn.pressed.connect(self.activateCard3)
+        hBox.addWidget(greenBtn)
+
         scheme = QStackedLayout()
         vBox.addLayout(hBox)
         vBox.addLayout(scheme)
@@ -21,7 +34,6 @@ class Example(QMainWindow):
         scheme.addWidget(Color("red"))
         scheme.addWidget(Color("blue"))
         scheme.addWidget(Color("green"))
-        scheme.addWidget(Color("purple"))
 
         scheme.setCurrentIndex(0)
 
@@ -30,6 +42,15 @@ class Example(QMainWindow):
         self.setCentralWidget(container)
 
         self.show()
+
+    def activateCard1(self):
+        self.schema.setCurrentIndex(0)
+
+    def activateCard2(self):
+        self.schema.setCurrentIndex(1)
+
+    def activateCard3(self):
+        self.schema.setCurrentIndex(2)
 
 
 if __name__ == '__main__':
