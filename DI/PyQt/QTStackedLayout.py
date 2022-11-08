@@ -1,7 +1,8 @@
 import sys
 
 from PyQt6.QtWidgets import (QApplication, QWidget,
-                             QMainWindow, QStackedLayout, QVBoxLayout, QHBoxLayout, QPushButton)
+                             QPushButton, QGridLayout, QMainWindow, QVBoxLayout, QHBoxLayout, QLineEdit, QStackedLayout)
+
 from Colors import Color
 
 
