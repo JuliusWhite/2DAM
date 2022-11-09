@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9996d6b-3b1e-4976-9637-be8cac0322a4" name="Changes" comment="Gtk calculator grid layout">
+      <change afterPath="$PROJECT_DIR$/GtkExInterface1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../PyQt/.idea/QtGTK.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../PyQt/.idea/QtGTK.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../PyQt/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PyQt/.idea/misc.xml" afterDir="false" />
     </list>
@@ -9,6 +12,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
