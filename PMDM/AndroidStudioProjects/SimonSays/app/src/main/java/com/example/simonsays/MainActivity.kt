@@ -1,18 +1,21 @@
 package com.example.simonsays
 
-import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
 import android.widget.TextView
+import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var resultImages: ImageView
     private lateinit var resultText: TextView
-    private lateinit var resultBtn: Button
+    private var click = true
+    private var playing = false
 
     var score = 0
 
@@ -26,25 +29,94 @@ class MainActivity : AppCompatActivity() {
 
         resultImages = findViewById(R.id.white_circle)
         resultImages.setOnClickListener {
-            start()
+            if (!playing) {
+                start()
+                playing = true
+            }
         }
     }
 
-    fun start(){
-        showScore()
+    fun start() {
+        Log.d("State", "Starting game")
+
+        val gameSeq = ArrayList<Int>()
+        val greenBtn = findViewById<Button>(R.id.greenBtn)
+        val redBtn = findViewById<Button>(R.id.redBtn)
+        val yellowBtn = findViewById<Button>(R.id.yellowBtn)
+        val blueBtn = findViewById<Button>(R.id.blueBtn)
+        val colorButtons = listOf(greenBtn, redBtn, yellowBtn, blueBtn)
+
         resultText = findViewById(R.id.greeting_txt)
         resultText.textSize = 32F
-        resultBtn = findViewById(R.id.greenBtn)
-        resultBtn.setOnClickListener {
-            score++
-            showScore()
-        }
+        showScore()
+        addStep(gameSeq)
+        addStep(gameSeq)
+        addStep(gameSeq)
+        addStep(gameSeq)
+        showSec(gameSeq, colorButtons)
+
+
     }
 
-    fun showScore(){
+    fun showScore() {
+        Log.d("State", "Showing score")
+
         resultText = findViewById(R.id.greeting_txt)
         resultText.text = "Score: $score"
     }
+
+    fun addStep(seq: MutableList<Int>) {
+        Log.d("State", "Adding one step to the sequence")
+
+        val num = (0..3).random()
+        seq.add(num)
+        Log.d("State", "Add Step")
+    }
+
+    fun showSec(seq: MutableList<Int>, colorButtons: List<Button>) {
+        Log.d("State", "Showing sequence")
+        CoroutineScope(Dispatchers.Main).launch {
+            val handler = Handler()
+            seq.forEach {
+                delay(700)
+                if (it == 0) {
+                    colorButtons[0].backgroundTintList =
+                        ColorStateList.valueOf(resources.getColor(R.color.light_green))
+                    val handler = Handler()
+                    handler.postDelayed(Runnable {
+                        colorButtons[0].backgroundTintList =
+                            ColorStateList.valueOf(resources.getColor(R.color.green))
+                    }, 500)
+                } else if (it == 1) {
+                    colorButtons[1].backgroundTintList =
+                        ColorStateList.valueOf(resources.getColor(R.color.light_red))
+                    val handler = Handler()
+                    handler.postDelayed(Runnable {
+                        colorButtons[1].backgroundTintList =
+                            ColorStateList.valueOf(resources.getColor(R.color.red))
+                    }, 500)
+                } else if (it == 2) {
+                    colorButtons[2].backgroundTintList =
+                        ColorStateList.valueOf(resources.getColor(R.color.light_yelow))
+                    val handler = Handler()
+                    handler.postDelayed(Runnable {
+                        colorButtons[2].backgroundTintList =
+                            ColorStateList.valueOf(resources.getColor(R.color.yellow))
+                    }, 500)
+                } else {
+                    colorButtons[3].backgroundTintList =
+                        ColorStateList.valueOf(resources.getColor(R.color.light_blue))
+                    val handler = Handler()
+                    handler.postDelayed(Runnable {
+                        colorButtons[3].backgroundTintList =
+                            ColorStateList.valueOf(resources.getColor(R.color.blue))
+                    }, 500)
+                }
+            }
+        }
+    }
+
+
 
     override fun onStart() {
         super.onStart();
