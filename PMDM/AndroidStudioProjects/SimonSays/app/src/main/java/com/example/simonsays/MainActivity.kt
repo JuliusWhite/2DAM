@@ -51,8 +51,6 @@ class MainActivity : AppCompatActivity() {
         showScore()
         addStep(gameSeq)
         addStep(gameSeq)
-        addStep(gameSeq)
-        addStep(gameSeq)
         showSec(gameSeq, colorButtons)
 
 
@@ -75,48 +73,46 @@ class MainActivity : AppCompatActivity() {
 
     fun showSec(seq: MutableList<Int>, colorButtons: List<Button>) {
         Log.d("State", "Showing sequence")
+
+        click = false
         CoroutineScope(Dispatchers.Main).launch {
             val handler = Handler()
             seq.forEach {
-                delay(700)
-                if (it == 0) {
-                    colorButtons[0].backgroundTintList =
-                        ColorStateList.valueOf(resources.getColor(R.color.light_green))
-                    val handler = Handler()
-                    handler.postDelayed(Runnable {
+                delay(350)
+                when (it) {
+                    0 -> {
+                        colorButtons[0].backgroundTintList =
+                            ColorStateList.valueOf(resources.getColor(R.color.light_green))
+                        delay(500)
                         colorButtons[0].backgroundTintList =
                             ColorStateList.valueOf(resources.getColor(R.color.green))
-                    }, 500)
-                } else if (it == 1) {
-                    colorButtons[1].backgroundTintList =
-                        ColorStateList.valueOf(resources.getColor(R.color.light_red))
-                    val handler = Handler()
-                    handler.postDelayed(Runnable {
+                    }
+                    1 -> {
+                        colorButtons[1].backgroundTintList =
+                            ColorStateList.valueOf(resources.getColor(R.color.light_red))
+                        delay(500)
                         colorButtons[1].backgroundTintList =
                             ColorStateList.valueOf(resources.getColor(R.color.red))
-                    }, 500)
-                } else if (it == 2) {
-                    colorButtons[2].backgroundTintList =
-                        ColorStateList.valueOf(resources.getColor(R.color.light_yelow))
-                    val handler = Handler()
-                    handler.postDelayed(Runnable {
+                    }
+                    2 -> {
+                        colorButtons[2].backgroundTintList =
+                            ColorStateList.valueOf(resources.getColor(R.color.light_yelow))
+                        delay(500)
                         colorButtons[2].backgroundTintList =
                             ColorStateList.valueOf(resources.getColor(R.color.yellow))
-                    }, 500)
-                } else {
-                    colorButtons[3].backgroundTintList =
-                        ColorStateList.valueOf(resources.getColor(R.color.light_blue))
-                    val handler = Handler()
-                    handler.postDelayed(Runnable {
+                    }
+                    else -> {
                         colorButtons[3].backgroundTintList =
-                            ColorStateList.valueOf(resources.getColor(R.color.blue))
-                    }, 500)
+                            ColorStateList.valueOf(resources.getColor(R.color.light_blue))
+                        delay(500)
+                            colorButtons[3].backgroundTintList =
+                                ColorStateList.valueOf(resources.getColor(R.color.blue))
+                    }
                 }
             }
         }
+        click = true
     }
-
-
 
     override fun onStart() {
         super.onStart();

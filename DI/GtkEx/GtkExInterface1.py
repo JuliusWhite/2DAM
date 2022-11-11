@@ -9,10 +9,10 @@ class MainWindow(Gtk.Window):
         super().__init__()
         self.set_title("Gtk ex window")
 
-        label1 = Gtk.Label("Visible sheets")
+        label1 = Gtk.Label(label="Visible sheets")
         hideBtn = Gtk.Button(label="Hide >>")
         showBtn = Gtk.Button(label="<< Show")
-        label2 = Gtk.Label("Hiden sheets")
+        label2 = Gtk.Label(label="Hiden sheets")
         closeLabel = Gtk.Button(label="Close")
         panel1 = Gtk.Entry()
         panel2 = Gtk.Entry()
@@ -35,7 +35,7 @@ class MainWindow(Gtk.Window):
         grid.set_row_spacing(10)
         grid.set_margin_top(5)
         grid.set_margin_bottom(5)
-        grid.set_margin_left(5)
+        grid.set_margin_start(5)
 
         self.add(grid)
 
