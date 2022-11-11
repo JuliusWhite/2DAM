@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Serializacion2:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Serializacion2_jar</output-path>
+    <root id="archive" name="Serializacion2.jar">
+      <element id="module-output" name="Serializacion2" />
+    </root>
+  </artifact>
+</component>
