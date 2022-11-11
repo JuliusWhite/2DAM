@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9996d6b-3b1e-4976-9637-be8cac0322a4" name="Changes" comment="Gtk calculator grid layout">
+      <change afterPath="$PROJECT_DIR$/GtkStackSwitcher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GtkExInterface1.py" beforeDir="false" afterPath="$PROJECT_DIR$/GtkExInterface1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PyQt/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PyQt/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
