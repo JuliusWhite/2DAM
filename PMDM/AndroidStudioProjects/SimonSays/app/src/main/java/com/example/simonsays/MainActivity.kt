@@ -76,7 +76,6 @@ class MainActivity : AppCompatActivity() {
 
         click = false
         CoroutineScope(Dispatchers.Main).launch {
-            val handler = Handler()
             seq.forEach {
                 delay(350)
                 when (it) {
@@ -105,8 +104,8 @@ class MainActivity : AppCompatActivity() {
                         colorButtons[3].backgroundTintList =
                             ColorStateList.valueOf(resources.getColor(R.color.light_blue))
                         delay(500)
-                            colorButtons[3].backgroundTintList =
-                                ColorStateList.valueOf(resources.getColor(R.color.blue))
+                        colorButtons[3].backgroundTintList =
+                            ColorStateList.valueOf(resources.getColor(R.color.blue))
                     }
                 }
             }
