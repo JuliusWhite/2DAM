@@ -2,7 +2,6 @@ package com.example.simonsays
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +15,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var resultText: TextView
     private var click = true
     private var playing = false
+    private var count = 0
+    private var delay = 500L
 
     var score = 0
 
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     fun start() {
         Log.d("State", "Starting game")
 
-        val gameSeq = ArrayList<Int>()
+        val seq = ArrayList<Int>()
         val greenBtn = findViewById<Button>(R.id.greenBtn)
         val redBtn = findViewById<Button>(R.id.redBtn)
         val yellowBtn = findViewById<Button>(R.id.yellowBtn)
@@ -49,11 +50,37 @@ class MainActivity : AppCompatActivity() {
         resultText = findViewById(R.id.greeting_txt)
         resultText.textSize = 32F
         showScore()
-        addStep(gameSeq)
-        addStep(gameSeq)
-        showSec(gameSeq, colorButtons)
+        addStep(seq)
+        showSec(seq, colorButtons)
 
 
+        greenBtn.setOnClickListener {
+            if (click) {
+                checkBtn(0, seq, colorButtons)
+                lightGreen(colorButtons)
+            }
+        }
+
+        redBtn.setOnClickListener {
+            if (click) {
+                checkBtn(1, seq, colorButtons)
+                lightRed(colorButtons)
+            }
+        }
+
+        yellowBtn.setOnClickListener {
+            if (click) {
+                checkBtn(2, seq, colorButtons)
+                lightYellow(colorButtons)
+            }
+        }
+
+        blueBtn.setOnClickListener {
+            if (click ) {
+                checkBtn(3, seq, colorButtons)
+                lightBlue(colorButtons)
+            }
+        }
     }
 
     fun showScore() {
@@ -68,49 +95,91 @@ class MainActivity : AppCompatActivity() {
 
         val num = (0..3).random()
         seq.add(num)
-        Log.d("State", "Add Step")
     }
 
     fun showSec(seq: MutableList<Int>, colorButtons: List<Button>) {
         Log.d("State", "Showing sequence")
 
-        click = false
         CoroutineScope(Dispatchers.Main).launch {
+            click = false
             seq.forEach {
-                delay(350)
+                delay(700)
                 when (it) {
-                    0 -> {
-                        colorButtons[0].backgroundTintList =
-                            ColorStateList.valueOf(resources.getColor(R.color.light_green))
-                        delay(500)
-                        colorButtons[0].backgroundTintList =
-                            ColorStateList.valueOf(resources.getColor(R.color.green))
-                    }
-                    1 -> {
-                        colorButtons[1].backgroundTintList =
-                            ColorStateList.valueOf(resources.getColor(R.color.light_red))
-                        delay(500)
-                        colorButtons[1].backgroundTintList =
-                            ColorStateList.valueOf(resources.getColor(R.color.red))
-                    }
-                    2 -> {
-                        colorButtons[2].backgroundTintList =
-                            ColorStateList.valueOf(resources.getColor(R.color.light_yelow))
-                        delay(500)
-                        colorButtons[2].backgroundTintList =
-                            ColorStateList.valueOf(resources.getColor(R.color.yellow))
-                    }
-                    else -> {
-                        colorButtons[3].backgroundTintList =
-                            ColorStateList.valueOf(resources.getColor(R.color.light_blue))
-                        delay(500)
-                        colorButtons[3].backgroundTintList =
-                            ColorStateList.valueOf(resources.getColor(R.color.blue))
-                    }
+                    0 -> lightGreen(colorButtons)
+                    1 -> lightRed(colorButtons)
+                    2 -> lightYellow(colorButtons)
+                    else -> lightBlue(colorButtons)
                 }
             }
+            click = true
         }
-        click = true
+    }
+
+    fun lightGreen(colorButtons: List<Button>) {
+        CoroutineScope(Dispatchers.Main).launch {
+            colorButtons[0].backgroundTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.light_green))
+            delay(delay)
+            colorButtons[0].backgroundTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.green))
+        }
+    }
+
+    fun lightRed(colorButtons: List<Button>) {
+        CoroutineScope(Dispatchers.Main).launch {
+            colorButtons[1].backgroundTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.light_red))
+            delay(delay)
+            colorButtons[1].backgroundTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.red))
+        }
+    }
+
+    fun lightYellow(colorButtons: List<Button>) {
+        CoroutineScope(Dispatchers.Main).launch {
+            colorButtons[2].backgroundTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.light_yelow))
+            delay(delay)
+            colorButtons[2].backgroundTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.yellow))
+        }
+    }
+
+    fun lightBlue(colorButtons: List<Button>) {
+        CoroutineScope(Dispatchers.Main).launch {
+            colorButtons[3].backgroundTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.light_blue))
+            delay(delay)
+            colorButtons[3].backgroundTintList =
+                ColorStateList.valueOf(resources.getColor(R.color.blue))
+        }
+    }
+
+    fun checkBtn(btnValue: Int, seq: MutableList<Int>, colorButtons: List<Button>) {
+        if (btnValue != seq[count] && seq.size > 0) {
+            click = false
+            delay = 800L
+            lightGreen(colorButtons)
+            lightRed(colorButtons)
+            lightYellow(colorButtons)
+            lightBlue(colorButtons)
+            delay = 500L
+            score = 0
+            count = 0
+            resultText = findViewById(R.id.greeting_txt)
+            resultText.textSize = 40F
+            resultText.text = "RESTART"
+            playing = false
+        } else {
+            count++
+            if (count == seq.size) {
+                score++
+                showScore()
+                count = 0
+                addStep(seq)
+                showSec(seq, colorButtons)
+            }
+        }
     }
 
     override fun onStart() {
@@ -139,4 +208,3 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
