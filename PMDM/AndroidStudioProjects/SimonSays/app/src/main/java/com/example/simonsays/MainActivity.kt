@@ -7,6 +7,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
@@ -52,7 +53,6 @@ class MainActivity : AppCompatActivity() {
         showScore()
         addStep(seq)
         showSec(seq, colorButtons)
-
 
         greenBtn.setOnClickListener {
             if (click) {
@@ -157,6 +157,8 @@ class MainActivity : AppCompatActivity() {
 
     fun checkBtn(btnValue: Int, seq: MutableList<Int>, colorButtons: List<Button>) {
         if (btnValue != seq[count] && seq.size > 0) {
+            val toast = Toast.makeText(applicationContext, "GAME OVER", Toast.LENGTH_SHORT)
+            toast.show()
             click = false
             delay = 800L
             lightGreen(colorButtons)
