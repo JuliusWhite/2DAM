@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         blueBtn.setOnClickListener {
-            if (click ) {
+            if (click) {
                 checkBtn(3, seq, colorButtons)
                 lightBlue(colorButtons)
             }
@@ -108,8 +108,6 @@ class MainActivity : AppCompatActivity() {
         if (score % 3 == 0 && score != 0 && seqDelay >= 350){
             seqDelay -= 50L
         }
-        println(score)
-        println(seqDelay)
         CoroutineScope(Dispatchers.Main).launch {
             click = false
             seq.forEach {
