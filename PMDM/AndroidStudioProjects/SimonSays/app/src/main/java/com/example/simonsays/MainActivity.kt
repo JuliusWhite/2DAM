@@ -3,6 +3,7 @@ package com.example.simonsays
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
@@ -14,10 +15,12 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var resultImages: ImageView
     private lateinit var resultText: TextView
+    private lateinit var finalScore: TextView
     private var click = true
     private var playing = false
     private var count = 0
     private var delay = 500L
+    private var seqDelay = 700L
 
     var score = 0
 
@@ -48,6 +51,8 @@ class MainActivity : AppCompatActivity() {
         val blueBtn = findViewById<Button>(R.id.blueBtn)
         val colorButtons = listOf(greenBtn, redBtn, yellowBtn, blueBtn)
 
+        finalScore = findViewById(R.id.finalScore)
+        finalScore.visibility = View.INVISIBLE
         resultText = findViewById(R.id.greeting_txt)
         resultText.textSize = 32F
         showScore()
@@ -100,10 +105,15 @@ class MainActivity : AppCompatActivity() {
     fun showSec(seq: MutableList<Int>, colorButtons: List<Button>) {
         Log.d("State", "Showing sequence")
 
+        if (score % 3 == 0 && score != 0 && seqDelay >= 350){
+            seqDelay -= 50L
+        }
+        println(score)
+        println(seqDelay)
         CoroutineScope(Dispatchers.Main).launch {
             click = false
             seq.forEach {
-                delay(700)
+                delay(seqDelay)
                 when (it) {
                     0 -> lightGreen(colorButtons)
                     1 -> lightRed(colorButtons)
@@ -166,11 +176,14 @@ class MainActivity : AppCompatActivity() {
             lightYellow(colorButtons)
             lightBlue(colorButtons)
             delay = 500L
-            score = 0
-            count = 0
             resultText = findViewById(R.id.greeting_txt)
             resultText.textSize = 40F
             resultText.text = "RESTART"
+            finalScore = findViewById(R.id.finalScore)
+            finalScore.text = "Final score: $score"
+            finalScore.visibility = View.VISIBLE
+            score = 0
+            count = 0
             playing = false
         } else {
             count++
