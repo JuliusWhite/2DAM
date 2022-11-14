@@ -1,7 +1,10 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.simonsays
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -10,6 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.coroutines.*
+import java.util.prefs.Preferences
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,7 +26,9 @@ class MainActivity : AppCompatActivity() {
     private var delay = 500L
     private var seqDelay = 700L
 
-    var score = 0
+    private var score = 0
+
+    private val key = "RECORD"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("State", "onCreate")
@@ -41,7 +47,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun start() {
+    // Inicialization of variables, showing score, settinh onClickListeners and starting and showing the secuence
+
+    private fun start() {
         Log.d("State", "Starting game")
 
         val seq = ArrayList<Int>()
@@ -88,24 +96,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showScore() {
+    // shows score to the user
+    private fun showScore() {
         Log.d("State", "Showing score")
 
         resultText = findViewById(R.id.greeting_txt)
         resultText.text = "Score: $score"
     }
 
-    fun addStep(seq: MutableList<Int>) {
+    // adds one color to the sequence
+    private fun addStep(seq: MutableList<Int>) {
         Log.d("State", "Adding one step to the sequence")
 
         val num = (0..3).random()
         seq.add(num)
     }
 
-    fun showSec(seq: MutableList<Int>, colorButtons: List<Button>) {
+    // shows the sequence of colors
+    private fun showSec(seq: MutableList<Int>, colorButtons: List<Button>) {
         Log.d("State", "Showing sequence")
 
-        if (score % 3 == 0 && score != 0 && seqDelay >= 350){
+        if (score % 3 == 0 && score != 0 && seqDelay >= 350) {
             seqDelay -= 50L
         }
         CoroutineScope(Dispatchers.Main).launch {
@@ -123,7 +134,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun lightGreen(colorButtons: List<Button>) {
+    // lights the green button
+    private fun lightGreen(colorButtons: List<Button>) {
         CoroutineScope(Dispatchers.Main).launch {
             colorButtons[0].backgroundTintList =
                 ColorStateList.valueOf(resources.getColor(R.color.light_green))
@@ -133,7 +145,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun lightRed(colorButtons: List<Button>) {
+    // lights the red button
+    private fun lightRed(colorButtons: List<Button>) {
         CoroutineScope(Dispatchers.Main).launch {
             colorButtons[1].backgroundTintList =
                 ColorStateList.valueOf(resources.getColor(R.color.light_red))
@@ -143,7 +156,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun lightYellow(colorButtons: List<Button>) {
+    // lights the yellow button
+    private fun lightYellow(colorButtons: List<Button>) {
         CoroutineScope(Dispatchers.Main).launch {
             colorButtons[2].backgroundTintList =
                 ColorStateList.valueOf(resources.getColor(R.color.light_yelow))
@@ -153,7 +167,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun lightBlue(colorButtons: List<Button>) {
+    // lights the blue button
+    private fun lightBlue(colorButtons: List<Button>) {
         CoroutineScope(Dispatchers.Main).launch {
             colorButtons[3].backgroundTintList =
                 ColorStateList.valueOf(resources.getColor(R.color.light_blue))
@@ -163,10 +178,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun checkBtn(btnValue: Int, seq: MutableList<Int>, colorButtons: List<Button>) {
+    // checks if the pushed button matches the sequence, if it does the user can continue and the program will add an step
+    // if the sequence is correctly introduced, otherwise the sequence stops and show the user the final score, letting them
+    // restart a new game
+    private fun checkBtn(btnValue: Int, seq: MutableList<Int>, colorButtons: List<Button>) {
+        val gameoOverToast = Toast.makeText(applicationContext, "GAME OVER", Toast.LENGTH_SHORT)
+        val newRecordToast =
+            Toast.makeText(applicationContext, "NEW RECORD: $score!", Toast.LENGTH_SHORT)
+
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val record = prefs.getInt(key, 0)
+        val editor = prefs.edit()
+
         if (btnValue != seq[count] && seq.size > 0) {
-            val toast = Toast.makeText(applicationContext, "GAME OVER", Toast.LENGTH_SHORT)
-            toast.show()
+            gameoOverToast.show()
+
             click = false
             delay = 800L
             lightGreen(colorButtons)
@@ -180,6 +206,13 @@ class MainActivity : AppCompatActivity() {
             finalScore = findViewById(R.id.finalScore)
             finalScore.text = "Final score: $score"
             finalScore.visibility = View.VISIBLE
+
+            if (score > record) {
+                editor.putInt(key, score)
+                editor.apply()
+                newRecordToast.show()
+            }
+
             score = 0
             count = 0
             playing = false
