@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SimonSays</string>
+    <string name="app_name">Simon Says</string>
     <string name="score">Score: 0</string>
     <string name="whitecircle">White Circle</string>
     <string name="start">START</string>
