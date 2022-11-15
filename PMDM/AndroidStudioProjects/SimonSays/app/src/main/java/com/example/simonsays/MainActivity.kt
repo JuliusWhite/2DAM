@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import kotlinx.coroutines.*
 import java.util.prefs.Preferences
+import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     private var playing = false
     private var count = 0
     private var delay = 500L
-    private var seqDelay = 700L
+    private var seqDelay: Long = 700L
 
     private var score = 0
 
@@ -58,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         val yellowBtn = findViewById<Button>(R.id.yellowBtn)
         val blueBtn = findViewById<Button>(R.id.blueBtn)
         val colorButtons = listOf(greenBtn, redBtn, yellowBtn, blueBtn)
+        seqDelay = 700L
 
         finalScore = findViewById(R.id.finalScore)
         finalScore.visibility = View.INVISIBLE
