@@ -16,7 +16,9 @@ public class Main {
 
             int eventType = reader.getEventType();
 
-            String toret;
+            String cod = "";
+            String desc = "";
+            String toPrase;
             double price;
 
             Product p1 = new Product();
@@ -30,26 +32,23 @@ public class Main {
                     switch (reader.getLocalName()) {
 
                         case "produto":
-                            toret = reader.getAttributeValue(0);
-                            p1.setCode(toret);
+                            cod = reader.getAttributeValue(0);
                             break;
                         case "desc":
-                            toret = reader.getElementText();
-                            p1.setDesc(toret);
+                            desc = reader.getElementText();
                             break;
                         case "prezo":
-                            toret = reader.getElementText();
-                            double d = Double.parseDouble(toret);
-                            p1.setPrice(d);
+                            toPrase = reader.getElementText();
+                            double d = Double.parseDouble(toPrase);
+                            p1 = new Product(cod, desc, d);
+                            produtos.add(p1);
                             break;
                         default:
                             break;
                     }
-
                 }
             }
             reader.close();
-            produtos.add(p1);
 
             for (Product p : produtos) {
                 System.out.println(p.toString());
