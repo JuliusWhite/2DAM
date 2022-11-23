@@ -9,7 +9,7 @@ public class Mail {
     public synchronized void write(String text) {
         while (!msg.equals("")){
             try {
-                System.out.println("Can´t write, mail full");
+//                System.out.println("Can´t write, mail full");
                 wait();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -17,13 +17,13 @@ public class Mail {
         }
         System.out.println("Writing " + text);
         msg = text;
-        notify();
+        notifyAll();
     }
 
     public synchronized void read() {
         while (msg.equals("")){
             try {
-                System.out.println("Can´t read, mail empty");
+//                System.out.println("Can´t read, mail empty");
                 wait();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -31,7 +31,7 @@ public class Mail {
         }
         System.out.println("Reading " + msg);
         msg = "";
-        notify();
+        notifyAll();
     }
 
 
