@@ -26,7 +26,7 @@ public class Counter {
         for (int i = 0; i < 10; i++) {
             System.out.println("\tHi! I'm thread " + name + " and my i is " + i);
             try {
-                sleep((int) (Math.random() * 1000) + 500);
+                sleep((int) (Math.random() * (1000 - 500)) + 500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
