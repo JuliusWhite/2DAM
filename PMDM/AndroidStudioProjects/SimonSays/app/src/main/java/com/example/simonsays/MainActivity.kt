@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import kotlinx.coroutines.*
 import java.util.prefs.Preferences
 import kotlin.properties.Delegates
@@ -31,6 +33,9 @@ class MainActivity : AppCompatActivity() {
 
     private val key = "RECORD"
 
+    // instantiation of the ViewModel
+    val myModel by viewModels<MyViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("State", "onCreate")
 
@@ -48,17 +53,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Inicialization of variables, showing score, settinh onClickListeners and starting and showing the secuence
-
+    // Initialization of variables, showing score, setting onClickListeners and starting and showing the sequence
     private fun start() {
         Log.d("State", "Starting game")
 
-        val seq = ArrayList<Int>()
         val greenBtn = findViewById<Button>(R.id.greenBtn)
         val redBtn = findViewById<Button>(R.id.redBtn)
         val yellowBtn = findViewById<Button>(R.id.yellowBtn)
         val blueBtn = findViewById<Button>(R.id.blueBtn)
         val colorButtons = listOf(greenBtn, redBtn, yellowBtn, blueBtn)
+
         seqDelay = 700L
 
         finalScore = findViewById(R.id.finalScore)
@@ -66,36 +70,49 @@ class MainActivity : AppCompatActivity() {
         resultText = findViewById(R.id.greeting_txt)
         resultText.textSize = 32F
         showScore()
-        addStep(seq)
-        showSec(seq, colorButtons)
+        myModel.addStep()       // calling ViewModel method addStep
+        showSec(myModel.seq, colorButtons)      // changed the parameter seq for myModel.seq
 
         greenBtn.setOnClickListener {
             if (click) {
-                checkBtn(0, seq, colorButtons)
+                checkBtn(0, myModel.seq, colorButtons)      // changed the parameter seq for myModel.seq
                 lightGreen(colorButtons)
             }
         }
 
         redBtn.setOnClickListener {
             if (click) {
-                checkBtn(1, seq, colorButtons)
+                checkBtn(1, myModel.seq, colorButtons)      // changed the parameter seq for myModel.seq
                 lightRed(colorButtons)
             }
         }
 
         yellowBtn.setOnClickListener {
             if (click) {
-                checkBtn(2, seq, colorButtons)
+                checkBtn(2, myModel.seq, colorButtons)      // changed the parameter seq for myModel.seq
                 lightYellow(colorButtons)
             }
         }
 
         blueBtn.setOnClickListener {
             if (click) {
-                checkBtn(3, seq, colorButtons)
+                checkBtn(3, myModel.seq, colorButtons)      // changed the parameter seq for myModel.seq
                 lightBlue(colorButtons)
             }
         }
+
+        // observation looking for livedata updates
+        myModel.livedata_seq.observe(
+            // instantiation of the new Observer
+            this,
+            Observer(
+                fun(newRandomList: MutableList<Int>) {
+                    // print new data in the LogCat
+                    Log.d(myModel.TAG_LOG, newRandomList.toString())
+                }
+            )
+        )
+
     }
 
     // shows score to the user
@@ -104,14 +121,6 @@ class MainActivity : AppCompatActivity() {
 
         resultText = findViewById(R.id.greeting_txt)
         resultText.text = "Score: $score"
-    }
-
-    // adds one color to the sequence
-    private fun addStep(seq: MutableList<Int>) {
-        Log.d("State", "Adding one step to the sequence")
-
-        val num = (0..3).random()
-        seq.add(num)
     }
 
     // shows the sequence of colors
@@ -195,6 +204,7 @@ class MainActivity : AppCompatActivity() {
         if (btnValue != seq[count] && seq.size > 0) {
             gameoOverToast.show()
 
+            myModel.seq.clear()      // clearing myModel.seq
             click = false
             delay = 800L
             lightGreen(colorButtons)
@@ -224,11 +234,12 @@ class MainActivity : AppCompatActivity() {
                 score++
                 showScore()
                 count = 0
-                addStep(seq)
+                myModel.addStep()
                 showSec(seq, colorButtons)
             }
         }
     }
+
 
     override fun onStart() {
         super.onStart();
