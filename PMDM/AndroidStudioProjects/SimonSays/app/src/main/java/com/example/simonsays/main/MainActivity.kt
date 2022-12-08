@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package com.example.simonsays
+package com.example.simonsays.main
 
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -14,9 +14,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.example.simonsays.model.MyViewModel
+import com.example.simonsays.R
 import kotlinx.coroutines.*
-import java.util.prefs.Preferences
-import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
 
@@ -193,7 +193,7 @@ class MainActivity : AppCompatActivity() {
     // if the sequence is correctly introduced, otherwise the sequence stops and show the user the final score, letting them
     // restart a new game
     private fun checkBtn(btnValue: Int, seq: MutableList<Int>, colorButtons: List<Button>) {
-        val gameoOverToast = Toast.makeText(applicationContext, "GAME OVER", Toast.LENGTH_SHORT)
+        val gameOverToast = Toast.makeText(applicationContext, "GAME OVER", Toast.LENGTH_SHORT)
         val newRecordToast =
             Toast.makeText(applicationContext, "NEW RECORD: $score!", Toast.LENGTH_SHORT)
 
@@ -202,7 +202,8 @@ class MainActivity : AppCompatActivity() {
         val editor = prefs.edit()
 
         if (btnValue != seq[count] && seq.size > 0) {
-            gameoOverToast.show()
+            gameOverToast.show()
+            myModel.addScoreToDB(score)
 
             myModel.seq.clear()      // clearing myModel.seq
             click = false
