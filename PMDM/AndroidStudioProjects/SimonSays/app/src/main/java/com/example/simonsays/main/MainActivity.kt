@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private var score = 0
 
-    private val key = "RECORD"
+//    private val key = "RECORD"
 
     // instantiation of the ViewModel
     val myModel by viewModels<MyViewModel>()
@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         resultImages = findViewById(R.id.white_circle)
         resultImages.setOnClickListener {
             if (!playing) {
@@ -51,6 +52,7 @@ class MainActivity : AppCompatActivity() {
                 playing = true
             }
         }
+
     }
 
     // Initialization of variables, showing score, setting onClickListeners and starting and showing the sequence
@@ -62,6 +64,21 @@ class MainActivity : AppCompatActivity() {
         val yellowBtn = findViewById<Button>(R.id.yellowBtn)
         val blueBtn = findViewById<Button>(R.id.blueBtn)
         val colorButtons = listOf(greenBtn, redBtn, yellowBtn, blueBtn)
+
+        // observation looking for livedata updates
+        // changed position of observer to make it work correctly
+        myModel.livedata_seq.observe(
+            // instantiation of the new Observer for the sequence
+            this,
+            Observer(
+                fun(newRandomList: MutableList<Int>) {
+                    // showing sequence
+                    showSec(myModel.seq, colorButtons)
+                    // print new data in the LogCat
+                    Log.d(myModel.TAG_LOG, newRandomList.toString())
+                }
+            )
+        )
 
         seqDelay = 700L
 
@@ -101,17 +118,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // observation looking for livedata updates
-        myModel.livedata_seq.observe(
-            // instantiation of the new Observer
-            this,
-            Observer(
-                fun(newRandomList: MutableList<Int>) {
-                    // print new data in the LogCat
-                    Log.d(myModel.TAG_LOG, newRandomList.toString())
-                }
-            )
-        )
+//        // observation looking for livedata updates
+//        myModel.livedata_seq.observe(
+//            // instantiation of the new Observer
+//            this,
+//            Observer(
+//                fun(newRandomList: MutableList<Int>) {
+//                    // print new data in the LogCat
+//                    Log.d(myModel.TAG_LOG, newRandomList.toString())
+//                }
+//            )
+//        )
 
     }
 
@@ -197,9 +214,13 @@ class MainActivity : AppCompatActivity() {
         val newRecordToast =
             Toast.makeText(applicationContext, "NEW RECORD: $score!", Toast.LENGTH_SHORT)
 
-        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        val record = prefs.getInt(key, 0)
-        val editor = prefs.edit()
+//        commenting all prefs references
+
+//        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+//        val record = prefs.getInt(key, 0)
+//        val editor = prefs.edit()
+
+        val record = myModel.getDBRecord()
 
         if (btnValue != seq[count] && seq.size > 0) {
             gameOverToast.show()
@@ -221,8 +242,8 @@ class MainActivity : AppCompatActivity() {
             finalScore.visibility = View.VISIBLE
 
             if (score > record) {
-                editor.putInt(key, score)
-                editor.apply()
+//                editor.putInt(key, score)
+//                editor.apply()
                 newRecordToast.show()
             }
 
@@ -236,7 +257,7 @@ class MainActivity : AppCompatActivity() {
                 showScore()
                 count = 0
                 myModel.addStep()
-                showSec(seq, colorButtons)
+//                showSec(seq, colorButtons)
             }
         }
     }

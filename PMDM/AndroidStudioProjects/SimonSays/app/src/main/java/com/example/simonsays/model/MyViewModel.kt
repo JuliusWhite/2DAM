@@ -27,6 +27,12 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
     // instantiation of a MutableLiveData to observe the MutableList<Int> updates
     val livedata_seq = MutableLiveData<MutableList<Int>>()
 
+    // instantiation and initilaitation of record
+    var record = 0
+
+    // instantiation of a livedata record to observe the updates
+    val livedata_record = MutableLiveData<Int>()
+
     @SuppressLint("StaticFieldLeak")
     val context = getApplication<Application>().applicationContext
 
@@ -70,6 +76,16 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
             Log.d("State", "Adding new row to DB")
 
         }
+    }
+
+    fun getDBRecord(): Int{
+        CoroutineScope(Dispatchers.Main).launch {
+            val scoreDao = db.scoreDao()
+            record = scoreDao.getRecord()
+
+            Log.d("State", "Recovering record from db. Record: $record")
+        }
+        return record
     }
 
 }

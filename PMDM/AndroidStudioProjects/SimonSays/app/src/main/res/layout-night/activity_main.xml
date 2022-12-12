@@ -10,7 +10,7 @@
     <Button
         android:id="@+id/greenBtn"
         android:layout_width="192dp"
-        android:layout_height="345dp"
+        android:layout_height="370dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:backgroundTint="#4CAF50"
@@ -20,7 +20,7 @@
     <Button
         android:id="@+id/redBtn"
         android:layout_width="192dp"
-        android:layout_height="345dp"
+        android:layout_height="370dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:backgroundTint="#D02A2A"
@@ -30,7 +30,7 @@
     <Button
         android:id="@+id/blueBtn"
         android:layout_width="192dp"
-        android:layout_height="345dp"
+        android:layout_height="370dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
         android:backgroundTint="#2C7CBC"
@@ -40,7 +40,7 @@
     <Button
         android:id="@+id/yellowBtn"
         android:layout_width="192dp"
-        android:layout_height="345dp"
+        android:layout_height="370dp"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="4dp"
         android:backgroundTint="#E8D639"
