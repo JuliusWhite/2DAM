@@ -118,18 +118,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-//        // observation looking for livedata updates
-//        myModel.livedata_seq.observe(
-//            // instantiation of the new Observer
-//            this,
-//            Observer(
-//                fun(newRandomList: MutableList<Int>) {
-//                    // print new data in the LogCat
-//                    Log.d(myModel.TAG_LOG, newRandomList.toString())
-//                }
-//            )
-//        )
-
     }
 
     // shows score to the user
