@@ -25,17 +25,17 @@ function dB()
     PRIMARY KEY (id)
     ) $charset_collate;";
 
+    $sqlDlt = "DELETE FROM $blasfemias";
+    $wpdb -> query($sqlDlt);
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sqlDlt);
+
     $sqlIns = "INSERT INTO $blasfemias (id, correctWord)
     VALUES (1, 'popo'),
            (2,'trasero'),
            (3,'poco agraciado'),
            (4,'pene'),
            (5,'flatulencia');";
-
-    $sqlDlt = "DELETE FROM $blasfemias";
-    $wpdb -> query($sqlDlt);
-    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    dbDelta($sqlDlt);
 
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
     dbDelta($tableCreate);
