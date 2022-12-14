@@ -57,7 +57,7 @@ function substitute_words( $text )
     $result = $wpdb -> get_results("SELECT correctWord FROM " . $blasfemias, ARRAY_A);
 
     foreach ($result as $row) {
-        $correctWords[] = $row['palabrasSustitutas'];
+        $correctWords[] = $row['correctWord'];
     }
 
     return str_replace($rudeWords, $correctWords, $text);
@@ -104,3 +104,6 @@ function substitute_words( $text )
 //add_filter('the_content', 'renym_feo_typo_fix');
 //add_filter('the_content', 'renym_polla_typo_fix');
 //add_filter('the_content', 'renym_pedo_typo_fix');
+
+add_action( 'plugins_loaded', 'substitute_words' );
+add_filter( 'the_content', 'substitute_words' );
