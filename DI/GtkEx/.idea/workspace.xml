@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9996d6b-3b1e-4976-9637-be8cac0322a4" name="Changes" comment="Gtk calculator grid layout">
-      <change afterPath="$PROJECT_DIR$/FirstGlade.glade" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FirstGladeGTK.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="e9996d6b-3b1e-4976-9637-be8cac0322a4" name="Changes" comment="Gtk calculator grid layout" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
