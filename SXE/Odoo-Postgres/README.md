@@ -16,9 +16,7 @@ Una vez ingreados los datos necesarios la web debería ser similar a la siguient
 
 ![Screenshot from 2023-01-13 11-31-42](https://user-images.githubusercontent.com/91659331/212299189-ca88b280-0caf-4601-9c2f-6a1d1177d072.png)
 
-Para sincronizar la DB con el PyCharm, será necesaria la version PyCharm professional, ya que es la única que permite la pestaña añadida de "databases". Se selecciona el añadir database y se selecciona postgres como en la siguiente imágen:
-
-![imagen](https://user-images.githubusercontent.com/91659331/212313552-b5f85d85-8afd-416b-93c6-42c09c047b5a.png)
+Para sincronizar la DB con el PyCharm, será necesaria la version PyCharm professional, ya que es la única que permite la pestaña añadida de "databases". Se selecciona el añadir database y se selecciona postgres.
 
 Se desplegará una venrtana como la siguiente, donde se deben rellenar los datos necesarios para establecer la conexion con la DB.
 
