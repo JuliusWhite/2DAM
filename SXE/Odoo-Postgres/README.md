@@ -1,5 +1,11 @@
 ## Servidor Odoo con PostgreSQL, levantado con docker.
 
+Primero se instala el postgresSQL en el equipo en caso de ser necesario. Para comrpobar que es gestor PostgreSQL se encuentra en el equipo podemos ejecutar **postgres --version** en la terminal.
+
+Una vez instalado, se comprueba el funcionamiento de ls servicios de postgresSQL con el siguiente comando: **sudo netstat -putan | grep post**.
+
+![Screenshot from 2023-01-13 12-32-29](https://user-images.githubusercontent.com/91659331/212311657-15da7a77-64fb-45fd-a138-ad0fa95bd358.png)
+
 Se genera un nuevo directorio de trabajo y se crea dentro el archivo 'docker-compose.yml', el cual levantara el nyuevo servidor Odoo.
 
 Este archivo consta de dos servicios, uno web (Odoo) y una base de datos (PostgreSQL). Primero se genera la DB, indicando todos los parámetros necesarios y después se genera el servicio web, con Odoo, enlazándolo con la DB creada anteriormente, indicando en el servivio web que depende de la database que acabamos de crear.
