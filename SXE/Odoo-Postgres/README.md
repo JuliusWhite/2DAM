@@ -1,8 +1,6 @@
 ## Servidor Odoo con PostgreSQL, levantado con docker.
 
-Primero se instala el postgresSQL en el equipo en caso de ser necesario. Para comrpobar que es gestor PostgreSQL se encuentra en el equipo podemos ejecutar **postgres --version** en la terminal.
-
-Una vez instalado, se comprueba el funcionamiento de ls servicios de postgresSQL con el siguiente comando: **sudo netstat -putan | grep post**.
+Primero se instala el postgresSQL en el equipo en caso de ser necesario. Una vez instalado, se comprueba el funcionamiento de ls servicios de postgresSQL con el siguiente comando: **sudo netstat -putan | grep post**.
 
 ![Screenshot from 2023-01-13 12-32-29](https://user-images.githubusercontent.com/91659331/212311657-15da7a77-64fb-45fd-a138-ad0fa95bd358.png)
 
