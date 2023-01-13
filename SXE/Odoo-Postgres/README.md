@@ -18,10 +18,12 @@ Una vez ingreados los datos necesarios la web debería ser similar a la siguient
 
 Para sincronizar la DB con el PyCharm, será necesaria la version PyCharm professional, ya que es la única que permite la pestaña añadida de "databases". Se selecciona el añadir database y se selecciona postgres.
 
-Se desplegará una venrtana como la siguiente, donde se deben rellenar los datos necesarios para establecer la conexion con la DB.
+Se desplegará una ventana como la siguiente, donde se deben rellenar los datos necesarios para establecer la conexion con la DB.
 
 ![imagen](https://user-images.githubusercontent.com/91659331/212314086-829186f9-fd3c-42fa-8e44-41a28ff8469c.png)
 
-Si da algún error debemos parar los servicios de postgresql en la terminal de sistema operativo y volver a ejecutar el docker-compose up.
+Si da algún error debemos parar los servicios de postgresql en la terminal de sistema operativo y volver a ejecutar el docker-compose up. En caso contrario deberemos ver lo siguiente:
+
+![Screenshot from 2023-01-13 12-58-52](https://user-images.githubusercontent.com/91659331/212316417-b28a8d08-0816-4d18-99b0-9aab09ba5bc7.png)
 
 
