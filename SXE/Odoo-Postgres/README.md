@@ -10,4 +10,4 @@ Si se desea comrpobar que el sevidor funciona en local podemos entrar desde cual
 
 Una vez ingreados los datos necesarios la web debería ser similar a la siguiente:
 
-image.png
+![Screenshot from 2023-01-13 11-31-42](https://user-images.githubusercontent.com/91659331/212299189-ca88b280-0caf-4601-9c2f-6a1d1177d072.png)
