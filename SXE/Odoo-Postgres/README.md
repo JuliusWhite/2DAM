@@ -7,3 +7,7 @@ Este archivo consta de dos servicios, uno web (Odoo) y una base de datos (Postgr
 Al ejecutar el comando para levantar los servicios, se generarán el la carpeta raíz unos directorios nuevos, autogenerados por el propio servicio.
 
 Si se desea comrpobar que el sevidor funciona en local podemos entrar desde cualquier navegador al sitio web: **http://localhost:8069**, siendo el puerto 8069, el puerto indicado en el archivo docker.
+
+Una vez ingreados los datos necesarios la web debería ser similar a la siguiente:
+
+image.png
