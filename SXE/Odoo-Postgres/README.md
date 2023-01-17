@@ -28,5 +28,9 @@ Si da algún error debemos parar los servicios de postgresql en la terminal de s
 
 ![Screenshot from 2023-01-13 12-58-52](https://user-images.githubusercontent.com/91659331/212316417-b28a8d08-0816-4d18-99b0-9aab09ba5bc7.png)
 
-Para mostrar la db que acabamos de crear en PyCharm, se accede al menú de configuración de la db postgresql, se accede a 'Schemas'  y se selecciona odoo_dam, para que se muestre en la pastaña 'Databases de PyCharm'.
+Para mostrar la db que se acaba de crear en PyCharm, se accede al menú de configuración de la db postgresql, se accede a 'Schemas' y se selecciona odoo_dam, para que se muestre en la pastaña 'Databases de PyCharm'.
+
+![imagen](https://user-images.githubusercontent.com/91659331/212899135-b519047f-951d-4041-8f1c-1a76dc8f24ed.png)
+
+![imagen](https://user-images.githubusercontent.com/91659331/212899325-0e49dad8-663b-4d81-b9fc-34d73bc093b9.png)
 
