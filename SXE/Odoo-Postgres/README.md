@@ -28,4 +28,7 @@ Si da algún error debemos parar los servicios de postgresql en la terminal de s
 
 ![Screenshot from 2023-01-13 12-58-52](https://user-images.githubusercontent.com/91659331/212316417-b28a8d08-0816-4d18-99b0-9aab09ba5bc7.png)
 
+Se deben administrar todos los permisis de las carpetas creadas automáticamente por la db de Odoo.
+
+Para mostrar la db que acabamos de crear en PyCharm, se accede al menú de configuración de la db postgresql, se accede a 'Schemas'  y se selecciona odoo_dam, para que se muestre en la pastaña 'Databases de PyCharm'.
 
