@@ -4,6 +4,8 @@ Primero se instala el postgresSQL en el equipo en caso de ser necesario. Una vez
 
 ![Screenshot from 2023-01-13 12-32-29](https://user-images.githubusercontent.com/91659331/212311657-15da7a77-64fb-45fd-a138-ad0fa95bd358.png)
 
+En caso de que sea necesario. se ejecuta **service postgresql stop** para parar los servicios activos de postgres.
+
 Se genera un nuevo directorio de trabajo y se crea dentro el archivo 'docker-compose.yml', el cual levantara el nyuevo servidor Odoo.
 
 Este archivo consta de dos servicios, uno web (Odoo) y una base de datos (PostgreSQL). Primero se genera la DB, indicando todos los parámetros necesarios y después se genera el servicio web, con Odoo, enlazándolo con la DB creada anteriormente, indicando en el servivio web que depende de la database que acabamos de crear.
