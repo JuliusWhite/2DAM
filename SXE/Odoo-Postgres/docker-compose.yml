@@ -9,3 +9,9 @@ services:
       - POSTGRES_USER=odoo
     ports:
       - 5432:5432
+    volumes:
+    - odoopostgresql:/var/lib/postrgesql/data
+
+volumes:
+    - odoopostgresql:
+
