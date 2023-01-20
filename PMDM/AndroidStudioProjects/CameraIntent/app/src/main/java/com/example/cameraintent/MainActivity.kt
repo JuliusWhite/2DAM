@@ -55,15 +55,13 @@ class MainActivity : AppCompatActivity() {
             photoView.setImageBitmap(imageBitmap)
         } else if (requestCode == RESULT_TWO && resultCode == RESULT_OK && data != null) {
             val resultView = findViewById<TextView>(R.id.resultView)
-            var n1 = data?.getIntExtra("n1", 0)
-            var n2 = data?.getIntExtra("n2", 0)
-            var result = data?.getIntExtra("result", 0)
-            resultView.text = "$n1 + $n2 = $result"
+            var aux = data?.getStringExtra("answer")
+            resultView.text = "$aux"
         }
     }
 
     fun random() : Int?{
-        val num = (0..10).random()
+        val num = (1..10).random()
         Log.d("State", num.toString())
         return num
     }

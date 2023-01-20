@@ -1,8 +1,12 @@
 package com.example.cameraintent
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 
 class AddActivity : AppCompatActivity() {
@@ -10,7 +14,10 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
-        val txtView = findViewById<TextView>(R.id.textView)
+        // instantiation of graphical elements
+        val txtView = findViewById<TextView>(R.id.numbersView)
+        val editTxt = findViewById<EditText>(R.id.editTextAnswer)
+        val checkButton = findViewById<Button>(R.id.checkButton)
 
         // geting the previous Intent
         val intent = intent
@@ -19,15 +26,24 @@ class AddActivity : AppCompatActivity() {
         val n1 = intent.getIntExtra("n1", 0)
         val n2 = intent.getIntExtra("n2", 0)
 
-        txtView.text = "$n1 + $n2"
+        // showing numbers
+        txtView.text = "$n1+$n2=?"
 
+        // giving values to variables
         var result = n1 + n2
+        Log.d("State", "$result")
+        var aux = editTxt.text.toString()
+//        var answer: Int = aux.toInt()
+        var answer = 0
 
-        intent.putExtra("n1", n1)
-        intent.putExtra("n2", n2)
-        intent.putExtra("result", result)
-        setResult(Activity.RESULT_OK, intent)
-
-        finish()
+        checkButton.setOnClickListener {
+            Log.d("State", aux)
+            var toret = answer.toString()
+            if (result == answer) toret == "Correct answer"
+            else toret == "Incorrect answer"
+            intent.putExtra("answer", toret)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
     }
 }
