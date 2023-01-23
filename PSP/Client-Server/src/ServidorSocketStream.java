@@ -27,11 +27,11 @@ public class ServidorSocketStream {
             InputStream is = newSocket.getInputStream();
             OutputStream os = newSocket.getOutputStream();
 
+
+            while (true) {
             byte[] mensaje = new byte[25];
             is.read(mensaje);
             System.out.println(mensaje);
-
-            while (true) {
                 if (!mensaje.equals("exit")) {
                     System.out.println("Mensaje recibido: " + new String(mensaje));
                 } else {
