@@ -31,16 +31,19 @@ class AddActivity : AppCompatActivity() {
 
         // giving values to variables
         var result = n1 + n2
-        Log.d("State", "$result")
-        var aux = editTxt.text.toString()
-//        var answer: Int = aux.toInt()
-        var answer = 0
+        Log.d("State", "Result: $result")
 
         checkButton.setOnClickListener {
-            Log.d("State", aux)
-            var toret = answer.toString()
-            if (result == answer) toret == "Correct answer"
-            else toret == "Incorrect answer"
+            var aux = editTxt.text
+            var answer = Integer.parseInt(editTxt.text.toString())
+            Log.d("State", "Result: $result, answer: $answer")
+            var toret = "Error"
+            if (result == answer) {
+                toret = "Correct answer!"
+            }
+            else {
+                toret = "Incorrect answer!"
+            }
             intent.putExtra("answer", toret)
             setResult(Activity.RESULT_OK, intent)
             finish()
