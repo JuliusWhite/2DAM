@@ -3,6 +3,7 @@ services:
 
   db:
     image: postgres:13
+    restart: always
     container_name: dam22_postgresql
     environment:
       - POSTGRES_DB=postgres
