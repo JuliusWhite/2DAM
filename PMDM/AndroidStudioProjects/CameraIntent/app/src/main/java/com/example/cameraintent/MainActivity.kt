@@ -15,13 +15,14 @@ const val REQUEST_IMAGE_CAPTURE = 1
 const val RESULT_TWO = 2
 
 class MainActivity : AppCompatActivity() {
+    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // instantiation of buttons
-        var cameraButton = findViewById<Button>(R.id.cameraButton)
-        var addButton = findViewById<Button>(R.id.addButton)
+        val cameraButton = findViewById<Button>(R.id.cameraButton)
+        val addButton = findViewById<Button>(R.id.addButton)
 
         // instantiation of intents
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    @Suppress("DEPRECATION")
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -55,12 +57,12 @@ class MainActivity : AppCompatActivity() {
             photoView.setImageBitmap(imageBitmap)
         } else if (requestCode == RESULT_TWO && resultCode == RESULT_OK && data != null) {
             val resultView = findViewById<TextView>(R.id.resultView)
-            var aux = data?.getStringExtra("answer")
+            val aux = data.getStringExtra("answer")
             resultView.text = "$aux"
         }
     }
 
-    fun random() : Int?{
+    fun random() : Int {
         val num = (1..10).random()
         Log.d("State", num.toString())
         return num

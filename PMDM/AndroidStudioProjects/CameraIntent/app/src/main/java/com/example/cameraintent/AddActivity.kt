@@ -1,7 +1,7 @@
 package com.example.cameraintent
 
+import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 
 class AddActivity : AppCompatActivity() {
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
@@ -30,19 +31,23 @@ class AddActivity : AppCompatActivity() {
         txtView.text = "$n1+$n2=?"
 
         // giving values to variables
-        var result = n1 + n2
+        val result = n1 + n2
         Log.d("State", "Result: $result")
 
         checkButton.setOnClickListener {
-            var aux = editTxt.text
-            var answer = Integer.parseInt(editTxt.text.toString())
-            Log.d("State", "Result: $result, answer: $answer")
+//            var aux = editTxt.text
+            var answer = 0
             var toret = "Error"
-            if (result == answer) {
-                toret = "Correct answer!"
-            }
-            else {
-                toret = "Incorrect answer!"
+            if (editTxt.text.toString() == "") {
+                answer == -1
+            } else {
+                answer = Integer.parseInt(editTxt.text.toString())
+                Log.d("State", "Result: $result, answer: $answer")
+                if (result == answer) {
+                    toret = "Correct answer!"
+                } else {
+                    toret = "Incorrect answer!"
+                }
             }
             intent.putExtra("answer", toret)
             setResult(Activity.RESULT_OK, intent)
