@@ -1,5 +1,8 @@
-import entity.Employee;
+import entity.Personas;
+
 import jakarta.persistence.*;
+
+import java.math.BigInteger;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,11 +13,20 @@ public class Main {
         try {
             transaction.begin();
 
-            Employee dalia = new Employee();
-            dalia.setId(6);
-            dalia.setFirstName("Dalia");
-            dalia.setLastName("Abo Sheasha");
-            entityManager.persist(dalia);
+//            Personas dalia = new Personas();
+//            dalia.setId(4);
+//            dalia.setNombre("Dalia");
+//            dalia.setApellido("Abo Sheasha");
+//            dalia.setSalario(3450);
+//            entityManager.persist(dalia);
+
+            // NamedQuery
+            TypedQuery<Personas> namedQuery = entityManager.createNamedQuery("Personas.selectPersonas", Personas.class);
+//            namedQuery.setParameter(1, "Daila");
+            for (Personas p : namedQuery.getResultList()) {
+                System.out.println(p);
+            }
+
 
             transaction.commit();
         } finally {
