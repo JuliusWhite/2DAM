@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df025336-4b5e-4fe7-8b8a-36678f1f85a4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/aa5fb1ab-e9b0-4c7f-a8ad-c182b3fdf160.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/aa5fb1ab-e9b0-4c7f-a8ad-c182b3fdf160.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/aa5fb1ab-e9b0-4c7f-a8ad-c182b3fdf160/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/aa5fb1ab-e9b0-4c7f-a8ad-c182b3fdf160/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Department.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/Employee.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DI/Reportlab/.idea/Reportlab.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../DI/Reportlab/.idea/Reportlab.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DI/Reportlab/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../DI/Reportlab/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DI/Reportlab/Canvas Text.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../DI/Reportlab/Canvas Text.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DI/Reportlab/Draw.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../DI/Reportlab/Draw.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DI/Reportlab/Draw.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../DI/Reportlab/Platypus.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../DI/Reportlab/Platypus.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +53,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_directory_selection": "/home/dam2a/2Dam/AD/Hibernate1/src/main/java",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "settings.editor.selected.configurable": "SQL Dialects",
     "vue.rearranger.settings.migration": "true"
   },
@@ -72,6 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1674649715884</updated>
       <workItem from="1674649717143" duration="4576000" />
+      <workItem from="1674729002039" duration="573000" />
     </task>
     <servers />
   </component>

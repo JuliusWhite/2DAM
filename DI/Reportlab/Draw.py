@@ -3,6 +3,7 @@ from reportlab.graphics.shapes import Image, Drawing
 from reportlab.graphics import renderPDF
 from reportlab.lib.pagesizes import A4
 
+
 op = []
 
 if platform == "linux" or platform == "linux2":

@@ -21,12 +21,13 @@ public class Main {
 //            entityManager.persist(dalia);
 
             // NamedQuery
-            TypedQuery<Personas> namedQuery = entityManager.createNamedQuery("Personas.selectPersonas", Personas.class);
-//            namedQuery.setParameter(1, "Daila");
-            for (Personas p : namedQuery.getResultList()) {
-                System.out.println(p);
-            }
+//            TypedQuery<Personas> namedQuery = entityManager.createNamedQuery("Personas.selectPersonas", Personas.class);
+//            for (Personas p : namedQuery.getResultList()) {
+//                System.out.println(p);
+//            }
 
+            Query countPersonas = entityManager.createNativeQuery("SELECT count(*) p from Personas p");
+            System.out.println("There are " + countPersonas.getSingleResult() + " personas in Personas");
 
             transaction.commit();
         } finally {
