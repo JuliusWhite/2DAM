@@ -28,10 +28,10 @@ public class ServidorSocketStream {
             OutputStream os = newSocket.getOutputStream();
 
 
-            while (true) {
             byte[] mensaje = new byte[25];
             is.read(mensaje);
-            System.out.println(mensaje);
+            while (true) {
+                System.out.println(mensaje);
                 if (!mensaje.equals("exit")) {
                     System.out.println("Mensaje recibido: " + new String(mensaje));
                 } else {
@@ -45,8 +45,8 @@ public class ServidorSocketStream {
 
                     System.out.println("Terminado");
                 }
+                is.read(mensaje);
             }
-
         } catch (IOException e) {
         }
     }
