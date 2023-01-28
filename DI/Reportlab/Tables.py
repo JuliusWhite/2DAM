@@ -15,7 +15,7 @@ data = [('', 'Sales', 'Bougths'),
         ('March', 30, 200)]
 
 table = Table(data, colWidths=100, rowHeights=30)
-table.setStyle([])
+table.setStyle([('GRID', (0, 0), (-1, -1), 0.5, colors.black)])
 
 op.append(table)
 doc.build(op)

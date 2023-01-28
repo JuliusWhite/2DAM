@@ -42,9 +42,13 @@ op.append(Spacer(0, 20))
 img_path = ""
 if platform == "linux" or platform == "linux2":
     img_path = "/home/dam2a/Imaxes/Wallpapers/comunist_pingu.jpg"
+    img_width = 225
+    img_height = 225
 elif platform == "win32":
     img_path = "C:\\Users\\julia\\Downloads\\king_bugs_bunny.jpg"
-img = Image(os.path.realpath(img_path), width=225, height=225)
+    img_width=260
+    img_height=200
+img = Image(os.path.realpath(img_path), width=img_width, height=img_height)
 op.append(img)
 
 paragraph3 = Paragraph(string_ * 5, MyParagraphStyle())

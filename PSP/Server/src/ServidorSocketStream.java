@@ -28,13 +28,14 @@ public class ServidorSocketStream {
             OutputStream os = newSocket.getOutputStream();
 
 
-            byte[] mensaje = new byte[25];
+            byte[] mensaje = new byte[4];
             is.read(mensaje);
             while (true) {
-                System.out.println(mensaje);
-                if (!mensaje.equals("exit")) {
+                if (!new String(mensaje).equals("exit")) {
                     System.out.println("Mensaje recibido: " + new String(mensaje));
                 } else {
+                    System.out.println("Mensaje recibido: " + new String(mensaje));
+
                     System.out.println("Cerrando el nuevo socket");
 
                     newSocket.close();
@@ -44,6 +45,7 @@ public class ServidorSocketStream {
                     serverSocket.close();
 
                     System.out.println("Terminado");
+                    break;
                 }
                 is.read(mensaje);
             }
