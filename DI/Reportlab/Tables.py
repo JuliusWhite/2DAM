@@ -11,11 +11,19 @@ op = []
 
 data = [('', 'Sales', 'Bougths'),
         ('January', 300, 500),
-        ('February', 400, 500),
-        ('March', 30, 200)]
+        ('February', -400, 500),
+        ('March', 30, -200)]
 
 table = Table(data, colWidths=100, rowHeights=30)
-table.setStyle([('GRID', (0, 0), (-1, -1), 0.5, colors.black)])
+style = [('GRID', (0, 0), (-1, -1), 0.5, colors.black),
+        ('TEXTCOLOR', (1, 1), (-1, -1), colors.springgreen)]
+table.setStyle(style)
+
+for f, line in enumerate (data):
+    for c, value in enumerate(line):
+        if type(value) == int and value < 0:
+            style.append(('BACKGROUND', (c, f), (c, f), colors.indianred))
+table.setStyle(style)
 
 op.append(table)
 doc.build(op)
