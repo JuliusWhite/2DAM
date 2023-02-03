@@ -30,25 +30,27 @@ public class ServidorSocketStream {
 
             byte[] mensaje = new byte[4];
             is.read(mensaje);
-            while (true) {
-                if (!new String(mensaje).equals("exit")) {
+            boolean repeat = true;
+            while (repeat) {
+                if (new String(mensaje).equals("exit")) {
                     System.out.println("Mensaje recibido: " + new String(mensaje));
+                    repeat = false;
                 } else {
-                    System.out.println("Mensaje recibido: " + new String(mensaje));
 
-                    System.out.println("Cerrando el nuevo socket");
+                    System.out.println("2 Mensaje recibido: " + new String(mensaje));
 
-                    newSocket.close();
-
-                    System.out.println("Cerrando el socket servidor");
-
-                    serverSocket.close();
-
-                    System.out.println("Terminado");
-                    break;
                 }
                 is.read(mensaje);
             }
+            System.out.println("Cerrando el nuevo socket");
+
+            newSocket.close();
+
+            System.out.println("Cerrando el socket servidor");
+
+            serverSocket.close();
+
+            System.out.println("Terminado");
         } catch (IOException e) {
         }
     }
