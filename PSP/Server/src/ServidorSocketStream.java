@@ -27,28 +27,26 @@ public class ServidorSocketStream {
             InputStream is = newSocket.getInputStream();
             OutputStream os = newSocket.getOutputStream();
 
-
-            byte[] mensaje = new byte[4];
-            is.read(mensaje);
             while (true) {
-                if (!new String(mensaje).equals("exit")) {
+                byte[] mensaje = new byte[4];
+                is.read(mensaje);
+                if (new String(mensaje).equals("exit")) {
                     System.out.println("Mensaje recibido: " + new String(mensaje));
-                } else {
-                    System.out.println("Mensaje recibido: " + new String(mensaje));
-
-                    System.out.println("Cerrando el nuevo socket");
-
-                    newSocket.close();
-
-                    System.out.println("Cerrando el socket servidor");
-
-                    serverSocket.close();
-
-                    System.out.println("Terminado");
                     break;
+                } else {
+                    System.out.println("2 Mensaje recibido: " + new String(mensaje));
                 }
                 is.read(mensaje);
             }
+            System.out.println("Cerrando el nuevo socket");
+
+            newSocket.close();
+
+            System.out.println("Cerrando el socket servidor");
+
+            serverSocket.close();
+
+            System.out.println("Terminado");
         } catch (IOException e) {
         }
     }
