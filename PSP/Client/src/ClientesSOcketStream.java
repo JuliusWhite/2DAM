@@ -24,7 +24,7 @@ public class ClientesSOcketStream {
 
             String mensaje = "";
             while (!mensaje.equalsIgnoreCase("exit")) {
-                System.out.println("Elija su operación entre las siguientes:" +
+                System.out.println("\nElija su operación entre las siguientes:" +
                         "\n\tCM -> Comparar un número con campos de fútbol." +
                         "\n\tJ -> Comprobar los meses que te faltan para jubilarte en relación a los años que te quedan." +
                         "\n\tPR -> Comparar un número con la bibliografía de Pérez Reverte" +
@@ -32,11 +32,33 @@ public class ClientesSOcketStream {
                         "\nIntroduzca 'exit' para salir.");
                 mensaje = sc.nextLine();
                 os.write(mensaje.getBytes());
+                switch (mensaje.toLowerCase()){
+                    case "cm":
+                        System.out.println("Por favor, introduzca el número que desea comparar con los metros cuadrados de un campo de futbol (7140):");
+                        break;
+
+                    case "j":
+                        System.out.println("Por favor, introduzca el número de años que faltan para su jubilación:");
+                        break;
+
+                    case "pr":
+                        System.out.println("Por favor, introduzca el número que desea comparar con la bibliografía de Pérez Reverte(48):");
+                        break;
+
+                    case "g":
+                        System.out.println("Por favor, introduzca el precio de gasolina que desea comparar con la más barata de Vigo(1.519):");
+                        break;
+
+                    default:
+                        System.out.print("Opción no encontrada. Recuerde que para abandonar el programa debe introducir 'exit'.");
+                        break;
+
+                }
 
                 System.out.println("Mensaje enviado");
             }
 
-            System.out.println("Cerrando el socket cliente");
+            System.out.println("\nCerrando el socket cliente");
 
             clienteSocket.close();
 

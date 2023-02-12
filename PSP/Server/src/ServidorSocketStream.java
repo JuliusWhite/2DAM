@@ -22,7 +22,7 @@ public class ServidorSocketStream {
 
             Socket newSocket = serverSocket.accept();
 
-            System.out.println("Conexión recibida");
+            System.out.println("Conexión recibida\n");
 
             InputStream is = newSocket.getInputStream();
             OutputStream os = newSocket.getOutputStream();
@@ -36,9 +36,8 @@ public class ServidorSocketStream {
                 } else {
                     System.out.println("2 Mensaje recibido: " + new String(mensaje));
                 }
-                is.read(mensaje);
             }
-            System.out.println("Cerrando el nuevo socket");
+            System.out.println("\nCerrando el nuevo socket");
 
             newSocket.close();
 
