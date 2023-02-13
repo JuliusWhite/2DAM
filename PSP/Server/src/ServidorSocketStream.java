@@ -1,9 +1,8 @@
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.text.DecimalFormat;
 
 public class ServidorSocketStream {
 
@@ -22,33 +21,73 @@ public class ServidorSocketStream {
 
             Socket newSocket = serverSocket.accept();
 
-            System.out.println("Conexión recibida\n");
+            System.out.println("Conexión recibida");
 
-            InputStream is = newSocket.getInputStream();
-            OutputStream os = newSocket.getOutputStream();
+            DataInputStream dis = new DataInputStream(newSocket.getInputStream());
+            DataOutputStream dos = new DataOutputStream(newSocket.getOutputStream());
 
-            byte[] mensaje = new byte[4];
-            is.read(mensaje);
-            while (true) {
-                if (new String(mensaje).equals("exit")) {
-                    System.out.println("Mensaje recibido: " + new String(mensaje));
-                    break;
-                } else {
-                    System.out.println("2 Mensaje recibido: " + new String(mensaje));
+//            InputStream is = newSocket.getInputStream();
+//            OutputStream os = newSocket.getOutputStream();
+
+//            byte[] mensaje = new byte[4];
+            String mensaje;
+            while (!(mensaje = dis.readUTF()).equals("exit")) {
+                double num = dis.readDouble();
+
+                System.out.println("\n2 Mensaje recibido: " + mensaje +
+                        "\nNúmero recicido: " + num);
+                double result = 0;
+                String toret = "";
+                DecimalFormat df = new DecimalFormat("0.000");
+
+                switch (mensaje) {
+
+                    case "cm":
+                        result = num / 7140;
+                        toret = "El resultado es que " + num + " son " + result + " campos de fútbol.";
+                        break;
+
+                    case "j":
+                        System.out.println("Por favor, introduzca el número de años que faltan para su jubilación:");
+                        result = num * 12;
+                        toret = "Quedan " + result + "meses para su jubilación.";
+                        break;
+
+                    case "pr":
+                        System.out.println("Por favor, introduzca el número que desea comparar con la bibliografía de Pérez Reverte(48):");
+                        result = num / 48;
+                        toret = "El resultado es que " + num + " son " + result + "bibliografías de reverte.";
+                        break;
+
+                    case "g":
+                        result = num - 1.519;
+                        toret = "Si pagas " + num + "€/l de gasolin estás pagando " + df.format(result) + " de más.";
+                        break;
+
+                    default:
+                        System.err.print("Error de introducción");
+                        break;
+
                 }
 
-                System.out.println("\nCerrando el nuevo socket");
+                System.out.println("Result: " + df.format(result));
+//                dos.writeDouble(result);
+                dos.writeUTF(toret);
 
-                newSocket.close();
-
-                System.out.println("Cerrando el socket servidor");
-
-                serverSocket.close();
-
-                System.out.println("Terminado");
             }
 
+            System.out.println("\nCerrando el nuevo socket");
+
+            newSocket.close();
+
+            System.out.println("Cerrando el socket servidor");
+
+            serverSocket.close();
+
+            System.out.println("Terminado");
+
         } catch (IOException e) {
+            System.err.println(e.getMessage());
         }
     }
 }
