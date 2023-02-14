@@ -865,6 +865,106 @@ test> db.people.find()
 ]
 
 
+// Ejercicios
+
+1)buscar documentos onde a puntuacion sexa maior que 7
+
+test> db.datos.find({ puntuacion: {$gt: 7} });
+[
+  { _id: 3, puntuacion: 9, exame: 'test', estudiante: 50 },
+  { _id: 5, puntuacion: 8, exame: 'test', estudiante: 30 },
+  { _id: 9, puntuacion: 8, exame: 'teoria', estudiante: 30 }
+]
+
+2)buscar documentos correspondentes a exames tipo teoria ou tipo test
+
+test> db.datos.find( {$or: [ {exame: "test"}, {exame: "teoria"} ] } );
+[
+  { _id: 1, puntuacion: 6, exame: 'test', estudiante: 40 },
+  { _id: 2, puntuacion: 7, exame: 'teoria', estudiante: 50 },
+  { _id: 3, puntuacion: 9, exame: 'test', estudiante: 50 },
+  { _id: 5, puntuacion: 8, exame: 'test', estudiante: 30 },
+  { _id: 7, puntuacion: 5, exame: 'test', estudiante: 20 },
+  { _id: 9, puntuacion: 8, exame: 'teoria', estudiante: 30 }
+
+
+3)buscar documentos onde a puntuacion sexa maior que 2 correspondentes ao estudante 30
+
+test> db.datos.find( {$and: [ {puntuacion: {$gt: 2} }, {estudiante: 30} ] } );
+[
+  { _id: 5, puntuacion: 8, exame: 'test', estudiante: 30 },
+  { _id: 9, puntuacion: 8, exame: 'teoria', estudiante: 30 },
+  { _id: 10, puntuacion: 4, exame: 'practica', estudiante: 30 }
+]
+
+4)incrementar a puntuacion dos examenes de practica e 1 punto
+
+test> db.datos.find();
+[
+  { _id: 1, puntuacion: 6, exame: 'test', estudiante: 40 },
+  { _id: 2, puntuacion: 7, exame: 'teoria', estudiante: 50 },
+  { _id: 3, puntuacion: 9, exame: 'test', estudiante: 50 },
+  { _id: 4, puntuacion: 4, exame: 'practica', estudiante: 20 },
+  { _id: 5, puntuacion: 8, exame: 'test', estudiante: 30 },
+  { _id: 6, puntuacion: 3, exame: 'practica', estudiante: 50 },
+  { _id: 7, puntuacion: 5, exame: 'test', estudiante: 20 },
+  { _id: 8, puntuacion: 5, exame: 'practica', estudiante: 40 },
+  { _id: 9, puntuacion: 8, exame: 'teoria', estudiante: 30 },
+  { _id: 10, puntuacion: 4, exame: 'practica', estudiante: 30 }
+]
+test> db.datos.update({exame: "practica"}, {$inc: {puntuacion: 1}}, {multi: true});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+test> db.datos.find();
+[
+  { _id: 1, puntuacion: 6, exame: 'test', estudiante: 40 },
+  { _id: 2, puntuacion: 7, exame: 'teoria', estudiante: 50 },
+  { _id: 3, puntuacion: 9, exame: 'test', estudiante: 50 },
+  { _id: 4, puntuacion: 5, exame: 'practica', estudiante: 20 },
+  { _id: 5, puntuacion: 8, exame: 'test', estudiante: 30 },
+  { _id: 6, puntuacion: 4, exame: 'practica', estudiante: 50 },
+  { _id: 7, puntuacion: 5, exame: 'test', estudiante: 20 },
+  { _id: 8, puntuacion: 6, exame: 'practica', estudiante: 40 },
+  { _id: 9, puntuacion: 8, exame: 'teoria', estudiante: 30 },
+  { _id: 10, puntuacion: 5, exame: 'practica', estudiante: 30 }
+]
+
+5)incrementar a puntuacion do examen tipo test do estudiante 40 en 1 punto
+
+test> db.datos.updateOne({$and: [{estudiante: 40}, {exame: "practica"}]}, {$inc: {puntuacion: 1}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+test> db.datos.find();
+[
+  { _id: 1, puntuacion: 7, exame: 'test', estudiante: 40 },
+  { _id: 2, puntuacion: 7, exame: 'teoria', estudiante: 50 },
+  { _id: 3, puntuacion: 9, exame: 'test', estudiante: 50 },
+  { _id: 4, puntuacion: 5, exame: 'practica', estudiante: 20 },
+  { _id: 5, puntuacion: 8, exame: 'test', estudiante: 30 },
+  { _id: 6, puntuacion: 4, exame: 'practica', estudiante: 50 },
+  { _id: 7, puntuacion: 5, exame: 'test', estudiante: 20 },
+  { _id: 8, puntuacion: 7, exame: 'practica', estudiante: 40 },
+  { _id: 9, puntuacion: 8, exame: 'teoria', estudiante: 30 },
+  { _id: 10, puntuacion: 5, exame: 'practica', estudiante: 30 }
+]
+
+
+*** there was alittle mistake and tehts why _id: 1 increased by 1 between questions 4 and 5.
+
+
+
+
+
 
 
 
