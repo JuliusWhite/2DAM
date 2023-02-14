@@ -865,6 +865,13 @@ test> db.people.find()
 ]
 
 
+// Exportar e importar datos
+
+mongodump -d test -c datos
+
+mongorestore dump/test/datos.bson
+
+
 // Ejercicios
 
 1)buscar documentos onde a puntuacion sexa maior que 7
