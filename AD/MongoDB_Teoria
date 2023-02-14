@@ -1,0 +1,872 @@
+RELACIONAL(SQL)			MONGO(no SQL)
+base				base
+taboa				collection
+fila				document
+columna				key
+valor				value
+clave primaria			_id
+
+NOTA: Dentro de la coleccioon, los documentos pueden tener distinto numero de campos con distintos numeros de columnas
+
+test> show dbs
+test> show collections
+test> db.persoas.drop ->borrar coleccion(tabla)
+test> db.persoas.insertOne({"nome":"luis","numeros":[23,56,89]})
+
+dam2a@perlanegra24:/$ mongosh
+Current Mongosh Log ID:	63db912cbde48dc73e55437c
+Connecting to:		mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.2
+Using MongoDB:		6.0.4
+Using Mongosh:		1.6.2
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2023-02-02T10:50:27.284+01:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2023-02-02T10:50:29.137+01:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+   2023-02-02T10:50:29.137+01:00: vm.max_map_count is too low
+------
+
+------
+   Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+   metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+   
+   The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+   and anyone you share the URL with. MongoDB may use this information to make product
+   improvements and to suggest MongoDB products and deployment options to you.
+   
+   To enable free monitoring, run the following command: db.enableFreeMonitoring()
+   To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+------
+
+test> show dbs
+admin   40.00 KiB
+config  12.00 KiB
+local   40.00 KiB
+test> show collections
+
+test> db.persoas.insertOne({"nome":"luis","numeros":[23,56,89]})
+{
+  acknowledged: true,
+  insertedId: ObjectId("63db916b548e91fec14ac568")
+}
+test> show collections
+persoas
+test> db.persoas.find()
+[
+  {
+    _id: ObjectId("63db916b548e91fec14ac568"),
+    nome: 'luis',
+    numeros: [ 23, 56, 89 ]
+  }
+]
+test> db.persoas.insertOne({"nome":"luis","edade":30,"numeros":[84,50,85,7,42,5,22,10]})
+{
+  acknowledged: true,
+  insertedId: ObjectId("63db9367548e91fec14ac569")
+}
+test> db.persoas.find()
+[
+  {
+    _id: ObjectId("63db916b548e91fec14ac568"),
+    nome: 'luis',
+    numeros: [ 23, 56, 89 ]
+  },
+  {
+    _id: ObjectId("63db9367548e91fec14ac569"),
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  }
+]
+test> db.persoas.insertOne({"nome":"ana","edade":31,"numeros":[54,5,65,33,22,34,89,76],enderezo:{rua:"urzaiz",numero:24,piso:3,porta:"a"}})
+{
+  acknowledged: true,
+  insertedId: ObjectId("63db94b8548e91fec14ac56a")
+}
+test> db.persoas.find()
+[
+  {
+    _id: ObjectId("63db916b548e91fec14ac568"),
+    nome: 'luis',
+    numeros: [ 23, 56, 89 ]
+  },
+  {
+    _id: ObjectId("63db9367548e91fec14ac569"),
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  },
+  {
+    _id: ObjectId("63db94b8548e91fec14ac56a"),
+    nome: 'ana',
+    edade: 31,
+    numeros: [
+      54,  5, 65, 33,
+      22, 34, 89, 76
+    ],
+    enderezo: { rua: 'urzaiz', numero: 24, piso: 3, porta: 'a' }
+  }
+]
+test> db.persoas.findOne()
+{
+  _id: ObjectId("63db916b548e91fec14ac568"),
+  nome: 'luis',
+  numeros: [ 23, 56, 89 ]
+}
+test> db.persoas.find({nome:"luis"})
+[
+  {
+    _id: ObjectId("63db916b548e91fec14ac568"),
+    nome: 'luis',
+    numeros: [ 23, 56, 89 ]
+  },
+  {
+    _id: ObjectId("63db9367548e91fec14ac569"),
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  }
+]
+test> db.persoas.find({nome:{$equ:"luis"}})
+MongoServerError: unknown operator: $equ
+test> db.persoas.find({nome:{$eq:"luis"}})
+[
+  {
+    _id: ObjectId("63db916b548e91fec14ac568"),
+    nome: 'luis',
+    numeros: [ 23, 56, 89 ]
+  },
+  {
+    _id: ObjectId("63db9367548e91fec14ac569"),
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  }
+]
+
+
+
+JULIÁN
+
+
+
+test> db.persoas.find({nome:{$eq:"luis"}})
+[
+  {
+    _id: ObjectId("63e38f6caebe789f52738b36"),
+    nome: 'luis',
+    numeros: [ 23, 56, 89 ]
+  },
+  {
+    _id: ObjectId("63e38fd1aebe789f52738b37"),
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  }
+]
+test> db.persoas.find({nome:{$ne:"luis"}})
+[
+  {
+    _id: ObjectId("63e38fe2aebe789f52738b38"),
+    nome: 'ana',
+    edade: 31,
+    numeros: [
+      54,  5, 65, 33,
+      22, 34, 89, 76
+    ],
+    enderezo: { rua: 'urzaiz', numero: 24, piso: 3, porta: 'a' }
+  }
+]
+test> db.persoas.insertOne( { "nome": "felix", edade: 40, "enderezo": { "rua": "faisan", "numero": 14, "piso": 1 } })
+{
+  acknowledged: true,
+  insertedId: ObjectId("63e39088aebe789f52738b39")
+}
+test> db.persoas.find()
+[
+  {
+    _id: ObjectId("63e38f6caebe789f52738b36"),
+    nome: 'luis',
+    numeros: [ 23, 56, 89 ]
+  },
+  {
+    _id: ObjectId("63e38fd1aebe789f52738b37"),
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  },
+  {
+    _id: ObjectId("63e38fe2aebe789f52738b38"),
+    nome: 'ana',
+    edade: 31,
+    numeros: [
+      54,  5, 65, 33,
+      22, 34, 89, 76
+    ],
+    enderezo: { rua: 'urzaiz', numero: 24, piso: 3, porta: 'a' }
+  },
+  {
+    _id: ObjectId("63e39088aebe789f52738b39"),
+    nome: 'felix',
+    edade: 40,
+    enderezo: { rua: 'faisan', numero: 14, piso: 1 }
+  }
+]
+test> db.persoas.find({nome: {$in: ['luis','felix']}})
+[
+  {
+    _id: ObjectId("63e38f6caebe789f52738b36"),
+    nome: 'luis',
+    numeros: [ 23, 56, 89 ]
+  },
+  {
+    _id: ObjectId("63e38fd1aebe789f52738b37"),
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  },
+  {
+    _id: ObjectId("63e39088aebe789f52738b39"),
+    nome: 'felix',
+    edade: 40,
+    enderezo: { rua: 'faisan', numero: 14, piso: 1 }
+  }
+]
+test> db.persoas.find({nome: {$nin: ['luis','felix']}})
+[
+  {
+    _id: ObjectId("63e38fe2aebe789f52738b38"),
+    nome: 'ana',
+    edade: 31,
+    numeros: [
+      54,  5, 65, 33,
+      22, 34, 89, 76
+    ],
+    enderezo: { rua: 'urzaiz', numero: 24, piso: 3, porta: 'a' }
+  }
+]
+
+
+// para eliminar db.persoas.remove({nome: 'felix'})
+
+test> db.persoas.remove({nome: 'felix'})
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{ acknowledged: true, deletedCount: 1 }
+
+
+test> db.persoas.find({edade: {$gt:30}})
+[
+  {
+    _id: ObjectId("63e38fe2aebe789f52738b38"),
+    nome: 'ana',
+    edade: 31,
+    numeros: [
+      54,  5, 65, 33,
+      22, 34, 89, 76
+    ],
+    enderezo: { rua: 'urzaiz', numero: 24, piso: 3, porta: 'a' }
+  },
+  {
+    _id: ObjectId("63e3937baebe789f52738b3a"),
+    nome: 'felix',
+    edade: 40,
+    enderezo: { rua: 'faisan', numero: 14, piso: 1 }
+  }
+]
+test> db.persoas.find({edade: {$gte:30}})
+[
+  {
+    _id: ObjectId("63e38fd1aebe789f52738b37"),
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  },
+  {
+    _id: ObjectId("63e38fe2aebe789f52738b38"),
+    nome: 'ana',
+    edade: 31,
+    numeros: [
+      54,  5, 65, 33,
+      22, 34, 89, 76
+    ],
+    enderezo: { rua: 'urzaiz', numero: 24, piso: 3, porta: 'a' }
+  },
+  {
+    _id: ObjectId("63e3937baebe789f52738b3a"),
+    nome: 'felix',
+    edade: 40,
+    enderezo: { rua: 'faisan', numero: 14, piso: 1 }
+  }
+]
+test> db.persoas.find({edade: {$lt:30}})
+
+test> db.persoas.find({edade: {$lte:30}})
+[
+  {
+    _id: ObjectId("63e38fd1aebe789f52738b37"),
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  }
+]
+
+
+test> db.persoas.find({$or: [{edade: {$gt:31}}, {nome: "ana"}]})
+[
+  {
+    _id: ObjectId("63e38fe2aebe789f52738b38"),
+    nome: 'ana',
+    edade: 31,
+    numeros: [
+      54,  5, 65, 33,
+      22, 34, 89, 76
+    ],
+    enderezo: { rua: 'urzaiz', numero: 24, piso: 3, porta: 'a' }
+  },
+  {
+    _id: ObjectId("63e3937baebe789f52738b3a"),
+    nome: 'felix',
+    edade: 40,
+    enderezo: { rua: 'faisan', numero: 14, piso: 1 }
+  }
+]
+test> 
+
+
+test> db.persoas.find({edade:{$not: {$gt:30}}})
+[
+  {
+    _id: ObjectId("63e38f6caebe789f52738b36"),
+    nome: 'luis',
+    numeros: [ 23, 56, 89 ]
+  },
+  {
+    _id: ObjectId("63e38fd1aebe789f52738b37"),
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  }
+]
+
+
+test> db.persoas.find({edade:{$lte:30}})
+[
+  {
+    _id: ObjectId("63e38fd1aebe789f52738b37"),
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  }
+]
+
+
+test> db.persoas.find({}, {nome:1})
+[
+  { _id: ObjectId("63e38f6caebe789f52738b36"), nome: 'luis' },
+  { _id: ObjectId("63e38fd1aebe789f52738b37"), nome: 'luis' },
+  { _id: ObjectId("63e38fe2aebe789f52738b38"), nome: 'ana' },
+  { _id: ObjectId("63e3937baebe789f52738b3a"), nome: 'felix' }
+]
+
+
+test> db.persoas.find({}, {nome:1, _id:0})
+[
+  { nome: 'luis' },
+  { nome: 'luis' },
+  { nome: 'ana' },
+  { nome: 'felix' }
+]
+
+
+test> db.persoas.find({edade: {$gt:30}}, {nome: 1, edade:1, _id: 0})
+[ { nome: 'ana', edade: 31 }, { nome: 'felix', edade: 40 } ]
+
+
+test> db.persoas.find({$or: [{edade: {$gt:31}}, {nome: "ana"}]}, {nome: 0})
+[
+  {
+    _id: ObjectId("63e38fe2aebe789f52738b38"),
+    edade: 31,
+    numeros: [
+      54,  5, 65, 33,
+      22, 34, 89, 76
+    ],
+    enderezo: { rua: 'urzaiz', numero: 24, piso: 3, porta: 'a' }
+  },
+  {
+    _id: ObjectId("63e3937baebe789f52738b3a"),
+    edade: 40,
+    enderezo: { rua: 'faisan', numero: 14, piso: 1 }
+  }
+]
+
+
+test> db.persoas.find({"enderezo.rua": "faisan"}, {_id: 0})
+[
+  {
+    nome: 'felix',
+    edade: 40,
+    enderezo: { rua: 'faisan', numero: 14, piso: 1 }
+  }
+]
+
+
+test> db.persoas.find({"enderezo.rua": "faisan"}, {_id: 0, nome: 1})
+[ { nome: 'felix' } ]
+
+
+
+test> db.persoas.find({"enderezo.numero": {$lt:20}}, {_id: 0, nome: 1})
+[ { nome: 'felix' } ]
+
+
+
+test> db.persoas.find({edade: {$gt:29}}, {_id: 0, "enderezo.rua": 0})
+[
+  {
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  },
+  {
+    nome: 'ana',
+    edade: 31,
+    numeros: [
+      54,  5, 65, 33,
+      22, 34, 89, 76
+    ],
+    enderezo: { numero: 24, piso: 3, porta: 'a' }
+  },
+  { nome: 'felix', edade: 40, enderezo: { numero: 14, piso: 1 } }
+]
+
+
+
+test> db.persoas.find({edade: {$gt:29}, "enderezo.rua": {$exists:true}}, {_id: 0, "enderezo.rua": 0})
+[
+  {
+    nome: 'ana',
+    edade: 31,
+    numeros: [
+      54,  5, 65, 33,
+      22, 34, 89, 76
+    ],
+    enderezo: { numero: 24, piso: 3, porta: 'a' }
+  },
+  { nome: 'felix', edade: 40, enderezo: { numero: 14, piso: 1 } }
+]
+
+
+
+test> db.persoas.find({ $nor: [{edade: 31}]})
+[
+  {
+    _id: ObjectId("63e38f6caebe789f52738b36"),
+    nome: 'luis',
+    numeros: [ 23, 56, 89 ]
+  },
+  {
+    _id: ObjectId("63e38fd1aebe789f52738b37"),
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  },
+  {
+    _id: ObjectId("63e3937baebe789f52738b3a"),
+    nome: 'felix',
+    edade: 40,
+    enderezo: { rua: 'faisan', numero: 14, piso: 1 }
+  }
+]
+
+
+test> db.persoas.find({edade: {$nin: [30, 40], $exists:true}})
+[
+  {
+    _id: ObjectId("63e38fe2aebe789f52738b38"),
+    nome: 'ana',
+    edade: 31,
+    numeros: [
+      54,  5, 65, 33,
+      22, 34, 89, 76
+    ],
+    enderezo: { rua: 'urzaiz', numero: 24, piso: 3, porta: 'a' }
+  }
+]
+
+
+test> db.persoas.find({nome: {$in: [/u*s/]}})
+[
+  {
+    _id: ObjectId("63e38f6caebe789f52738b36"),
+    nome: 'luis',
+    numeros: [ 23, 56, 89 ]
+  },
+  {
+    _id: ObjectId("63e38fd1aebe789f52738b37"),
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  }
+]
+test> db.persoas.find({nome: {$in: [/u,i/]}})
+
+
+ // Personas con 'i' e 'u' en cualquier posición de su nombre
+ 
+test> db.persoas.find({$and: [{nome:/i/}, {nome:/u/}]})
+[
+  {
+    _id: ObjectId("63e38f6caebe789f52738b36"),
+    nome: 'luis',
+    numeros: [ 23, 56, 89 ]
+  },
+  {
+    _id: ObjectId("63e38fd1aebe789f52738b37"),
+    nome: 'luis',
+    edade: 30,
+    numeros: [
+      84, 50, 85,  7,
+      42,  5, 22, 10
+    ]
+  },
+  { _id: ObjectId("63e4c2e52fedcc8d73ad177e"), nome: 'anilu' },
+  { _id: ObjectId("63e4c34a2fedcc8d73ad177f"), nome: 'anilu' }
+]
+
+
+
+test> db.people.insertOne({name: "Smith", age: 30})
+{
+  acknowledged: true,
+  insertedId: ObjectId("63e4c56d48429a5c1de40a67")
+}
+test> show collections
+people
+persoas
+test> db.people.find()
+[
+  { _id: ObjectId("63e4c56d48429a5c1de40a67"), name: 'Smith', age: 30 }
+]
+test> db.people.insertOne({_id: 1, nome: "Luis"})
+{ acknowledged: true, insertedId: 1 }
+test> db.people.find()
+[
+  { _id: ObjectId("63e4c56d48429a5c1de40a67"), name: 'Smith', age: 30 },
+  { _id: 1, nome: 'Luis' }
+]
+test> db.people.insertOne({_id: 1, nome: "Pepe"})
+MongoServerError: E11000 duplicate key error collection: test.people index: _id_ dup key: { : 1 }
+test> db.people.updateOne({"name": "Smith"}, {$set: {"children": 2.5} } )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+test> db.people.find()
+[
+  {
+    _id: ObjectId("63e4c56d48429a5c1de40a67"),
+    name: 'Smith',
+    age: 30,
+    children: 2.5
+  },
+  { _id: 1, nome: 'Luis' }
+]
+test> db.people.updateOne({"name": "Smith"}, {$set: {"children": 3} } )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+test> db.people.find()
+[
+  {
+    _id: ObjectId("63e4c56d48429a5c1de40a67"),
+    name: 'Smith',
+    age: 30,
+    children: 3
+  },
+  { _id: 1, nome: 'Luis' }
+]
+
+
+
+est> db.people.updateOne({"name": "Smith"}, {$set: {"childre": 4} } )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+test> db.people.find()
+[
+  {
+    _id: ObjectId("63e4c56d48429a5c1de40a67"),
+    name: 'Smith',
+    age: 30,
+    children: 3,
+    childre: 4
+  },
+  { _id: 1, nome: 'Luis' }
+]
+
+
+
+test> db.people.updateOne({"name": "Jones"}, {$set: {"age": 50} } )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+test> db.people.find()
+[
+  {
+    _id: ObjectId("63e4c56d48429a5c1de40a67"),
+    name: 'Smith',
+    age: 30,
+    children: 3
+  },
+  { _id: 1, nome: 'Luis' }
+]
+
+
+
+test> db.people.update({}, {"$set" : { "city" : "NYC"} } )
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+test> db.people.find()
+[
+  {
+    _id: ObjectId("63e4c56d48429a5c1de40a67"),
+    name: 'Smith',
+    age: 30,
+    children: 3,
+    city: 'NYC'
+  },
+  { _id: 1, nome: 'Luis' }
+]
+
+
+
+test> db.people.update({}, {"$set" : { "city" : "NYC"} }, {multi: true} )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+test> db.people.find()
+[
+  {
+    _id: ObjectId("63e4c56d48429a5c1de40a67"),
+    name: 'Smith',
+    age: 30,
+    children: 3,
+    city: 'NYC'
+  },
+  { _id: 1, nome: 'Luis', city: 'NYC' }
+]
+
+
+
+test> db.people.updateOne({"name": "Jones"}, {$set: {"age": 50} }, {upsert: true} )
+{
+  acknowledged: true,
+  insertedId: ObjectId("63e4cbd8599f63581c387097"),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+test> db.people.find()
+[
+  {
+    _id: ObjectId("63e4c56d48429a5c1de40a67"),
+    name: 'Smith',
+    age: 30,
+    children: 3,
+    city: 'NYC'
+  },
+  { _id: 1, nome: 'Luis', city: 'NYC' },
+  { _id: ObjectId("63e4cbd8599f63581c387097"), name: 'Jones', age: 50 }
+]
+test> db.people.update({}, {"$set" : { "city" : "NYC"} }, {multi: true} )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+test> db.people.find()
+[
+  {
+    _id: ObjectId("63e4c56d48429a5c1de40a67"),
+    name: 'Smith',
+    age: 30,
+    children: 3,
+    city: 'NYC'
+  },
+  { _id: 1, nome: 'Luis', city: 'NYC' },
+  {
+    _id: ObjectId("63e4cbd8599f63581c387097"),
+    name: 'Jones',
+    age: 50,
+    city: 'NYC'
+  }
+]
+
+
+
+test> db.people.updateOne({"name": "Smith"}, {$set: {"stock": 1} } )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+test> db.people.find()
+[
+  {
+    _id: ObjectId("63e4c56d48429a5c1de40a67"),
+    name: 'Smith',
+    age: 30,
+    children: 3,
+    city: 'NYC',
+    stock: 1
+  },
+  { _id: 1, nome: 'Luis', city: 'NYC', stock: 0 },
+  {
+    _id: ObjectId("63e4cbd8599f63581c387097"),
+    name: 'Jones',
+    age: 50,
+    city: 'NYC',
+    stock: 0
+  }
+]
+
+
+
+test> db.people.update({}, {"$inc" : { "stock" : 1} } )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+test> db.people.find()
+[
+  {
+    _id: ObjectId("63e4c56d48429a5c1de40a67"),
+    name: 'Smith',
+    age: 30,
+    children: 3,
+    city: 'NYC',
+    stock: 2
+  },
+  { _id: 1, nome: 'Luis', city: 'NYC', stock: 0 },
+  {
+    _id: ObjectId("63e4cbd8599f63581c387097"),
+    name: 'Jones',
+    age: 50,
+    city: 'NYC',
+    stock: 2
+  }
+]
+
+
+
+test> db.people.update({}, {"$inc" : { "stock" : 1} }, {multi: true} )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+test> db.people.find()
+[
+  {
+    _id: ObjectId("63e4c56d48429a5c1de40a67"),
+    name: 'Smith',
+    age: 30,
+    children: 3,
+    city: 'NYC',
+    stock: 3
+  },
+  { _id: 1, nome: 'Luis', city: 'NYC', stock: 1 },
+  {
+    _id: ObjectId("63e4cbd8599f63581c387097"),
+    name: 'Jones',
+    age: 50,
+    city: 'NYC',
+    stock: 3
+  }
+]
+
+
+
+
+
+
+

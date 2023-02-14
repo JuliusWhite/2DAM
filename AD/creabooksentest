@@ -1,0 +1,66 @@
+// conecto a mongo dende un terminal  :mongosh
+// vou crear as colecions proba e  books dentro da base test
+// COPIAR e PEGAR no TERMINAL  cliente de MONGO DENDE AQUI ata o seguinte comentario
+
+
+
+use test
+db.proba.deleteMany({})
+var si =
+[
+  {_id: 1,name:"Jaime"},
+  {_id:2,name:"Rob"},
+  {_id: 3 ,name:"Sansa"}
+]
+db.proba.insert(si);
+
+db.books.deleteMany({})
+var books =
+[
+{
+_id: 1,
+  item: "TBD",
+  stock: 0,
+  info: { publisher: "1111", pages: 430 },
+  tags: [ "technology", "computer" ],
+  ratings: [ { by: "ijk", rating: 4 }, { by: "lmn", rating: 5 } ],
+  reorder: false
+}
+,
+{_id: 2,
+  item: "XYZ123",
+  stock: 15,
+  info: { publisher: "5555", pages: 150 },
+  tags: [ ],
+  ratings: [ { by: "xyz", rating: 5, comment: "ratings and reorder will go away after update"} ],
+  reorder: false
+}
+]
+db.books.insert(books);
+
+
+// UPDATE
+
+db.books.update(
+   { _id: 1 },
+   {
+     $inc: { stock: 5 },
+     $set: {
+       item: "ABC123",
+       "info.publisher": "2222",
+       tags: [ "software" ],
+       "ratings.1": { by: "xyz", rating: 3 }
+     }
+   }
+)
+
+
+db.books.update(
+	{ stock: {$lte: 16} },
+	{ $set:  {reorder: true} },
+	{ multi: true }
+)
+
+//ATA AQUI
+// observacions:
+// lembra que cando leas dende java   datos numericos creados en mongo debes lelos como Double , e decir que neste caso _id e stock por exemplo deben ser lidos como Double.
