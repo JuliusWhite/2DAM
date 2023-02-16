@@ -8,28 +8,28 @@ public class ServidorSocketStream {
 
     public static void main(String[] args) {
         try {
-            System.out.println("Creando socket servidor");
 
+            // Abriendo el socket del cliente
+            System.out.println("Creando socket servidor");
             ServerSocket serverSocket = new ServerSocket();
 
+            // Aceptando conexiones con el cliente
             System.out.println("Realizando el bind");
-
             InetSocketAddress addr = new InetSocketAddress("localhost", 5555);
             serverSocket.bind(addr);
-
             System.out.println("Aceptando conexiones");
-
             Socket newSocket = serverSocket.accept();
-
             System.out.println("Conexión recibida");
 
+            // Instanciación de data input y output stream, ya que es más fácil trabajar con strings y doubles que con arreglos de bytes
             DataInputStream dis = new DataInputStream(newSocket.getInputStream());
             DataOutputStream dos = new DataOutputStream(newSocket.getOutputStream());
 
 //            InputStream is = newSocket.getInputStream();
 //            OutputStream os = newSocket.getOutputStream();
-
 //            byte[] mensaje = new byte[4];
+
+            // Menteniendo abierto el servicio con las opciones de la calculadora hasta que le cliente envíe un 'exit'
             String mensaje;
             while (!(mensaje = dis.readUTF()).equals("exit")) {
                 double num = dis.readDouble();
@@ -44,46 +44,44 @@ public class ServidorSocketStream {
 
                     case "cm":
                         result = num / 7140;
-                        toret = "El resultado es que " + num + " son " + result + " campos de fútbol.";
+                        toret = "El resultado es que " + num + "m² son " + df.format(result) + " campos de fútbol.";
                         break;
 
                     case "j":
-                        System.out.println("Por favor, introduzca el número de años que faltan para su jubilación:");
                         result = num * 12;
                         toret = "Quedan " + result + "meses para su jubilación.";
                         break;
 
                     case "pr":
-                        System.out.println("Por favor, introduzca el número que desea comparar con la bibliografía de Pérez Reverte(48):");
                         result = num / 48;
-                        toret = "El resultado es que " + num + " son " + result + "bibliografías de reverte.";
+                        toret = "El resultado es que " + num + " libros son " + result + " bibliografías de Reverte.";
                         break;
 
                     case "g":
                         result = num - 1.519;
-                        toret = "Si pagas " + num + "€/l de gasolin estás pagando " + df.format(result) + " de más.";
+                        if (result > 0) {
+                            toret = "Si pagas " + num + "€/l de gasolin estás pagando " + df.format(result) + "€/l de más.";
+                        } else toret = "Eso es imposible, yo conozco la gasolinera más barata de Vigo!";
                         break;
 
                     default:
-                        System.err.print("Error de introducción");
+                        System.err.println("Error de introducción");
                         break;
 
                 }
 
-                System.out.println("Result: " + df.format(result));
+//                System.out.println("Result: " + df.format(result));
 //                dos.writeDouble(result);
+                System.out.println(toret);
                 dos.writeUTF(toret);
 
             }
 
+            // Cerrandop socket de server
             System.out.println("\nCerrando el nuevo socket");
-
             newSocket.close();
-
             System.out.println("Cerrando el socket servidor");
-
             serverSocket.close();
-
             System.out.println("Terminado");
 
         } catch (IOException e) {
