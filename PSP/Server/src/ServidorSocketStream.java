@@ -44,12 +44,12 @@ public class ServidorSocketStream {
 
                     case "cm":
                         result = num / 7140;
-                        toret = "El resultado es que " + num + "m² son " + df.format(result) + " campos de fútbol.";
+                        toret = "El resultado es que " + num + "m² son " + result + " campos de fútbol.";
                         break;
 
                     case "j":
                         result = num * 12;
-                        toret = "Quedan " + result + "meses para su jubilación.";
+                        toret = "Quedan " + result + " meses para su jubilación.";
                         break;
 
                     case "pr":
@@ -60,7 +60,7 @@ public class ServidorSocketStream {
                     case "g":
                         result = num - 1.519;
                         if (result > 0) {
-                            toret = "Si pagas " + num + "€/l de gasolin estás pagando " + df.format(result) + "€/l de más.";
+                            toret = "Si pagas " + num + "€/l de gasolina estás pagando " + df.format(result) + "€/l de más.";
                         } else toret = "Eso es imposible, yo conozco la gasolinera más barata de Vigo!";
                         break;
 
