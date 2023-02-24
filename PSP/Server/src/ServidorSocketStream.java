@@ -73,7 +73,6 @@ public class ServidorSocketStream {
 //                dos.writeDouble(result);
                 System.out.println(toret);
                 dos.writeUTF(toret);
-
             }
 
             // Cerrando socket de server
