@@ -17,6 +17,7 @@ public class ServidorSocketStream {
             System.out.println("Realizando el bind");
             InetSocketAddress addr = new InetSocketAddress("localhost", 5555);
             serverSocket.bind(addr);
+
             System.out.println("Aceptando conexiones");
             Socket newSocket = serverSocket.accept();
             System.out.println("Conexión recibida");
@@ -24,10 +25,6 @@ public class ServidorSocketStream {
             // Instanciación de data input y output stream, ya que es más fácil trabajar con strings y doubles que con arreglos de bytes
             DataInputStream dis = new DataInputStream(newSocket.getInputStream());
             DataOutputStream dos = new DataOutputStream(newSocket.getOutputStream());
-
-//            InputStream is = newSocket.getInputStream();
-//            OutputStream os = newSocket.getOutputStream();
-//            byte[] mensaje = new byte[4];
 
             // Menteniendo abierto el servicio con las opciones de la calculadora hasta que le cliente envíe un 'exit'
             String mensaje;
@@ -44,17 +41,17 @@ public class ServidorSocketStream {
 
                     case "cm":
                         result = num / 7140;
-                        toret = "El resultado es que " + num + "m² son " + result + " campos de fútbol.";
+                        toret = "El resultado es que " + num + "m² son " + df.format(result) + " campos de fútbol.";
                         break;
 
                     case "j":
                         result = num * 12;
-                        toret = "Quedan " + result + " meses para su jubilación.";
+                        toret = "Quedan " + (int) result + " meses para su jubilación.";
                         break;
 
                     case "pr":
                         result = num / 48;
-                        toret = "El resultado es que " + num + " libros son " + result + " bibliografías de Reverte.";
+                        toret = "El resultado es que " + num + " libros son " + df.format(result) + " bibliografías de Reverte.";
                         break;
 
                     case "g":
@@ -77,7 +74,7 @@ public class ServidorSocketStream {
 
             }
 
-            // Cerrandop socket de server
+            // Cerrando socket de server
             System.out.println("\nCerrando el nuevo socket");
             newSocket.close();
             System.out.println("Cerrando el socket servidor");

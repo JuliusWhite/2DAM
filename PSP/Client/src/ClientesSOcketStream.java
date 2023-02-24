@@ -43,16 +43,14 @@ public class ClientesSOcketStream {
                 mensaje = sc.nextLine();
                 mensaje = mensaje.toLowerCase();
 
-                if (mensaje.equals("exit")){
-                    System.out.println("Hasta la próxima, cuñado!");
-                    break;
-                }
 
                 double num = 0;
 
                 try {
-
                     switch (mensaje) {
+                        case "":
+                            System.out.println("No se ha introducido ningún dato, por favor, repita la introducción");
+                            break;
                         case "cm":
                             System.out.println("Por favor, introduzca el número que desea comparar con los metros cuadrados de un campo de futbol (7140 m²):");
                             num = Double.parseDouble(sc.nextLine());
@@ -80,22 +78,23 @@ public class ClientesSOcketStream {
 
                     }
 
+                    // Se envian los datos al server
+                    dos.writeUTF(mensaje);
+                    dos.writeDouble(num);
+
+                    if (mensaje.equals("exit")){
+                        System.out.println("Hasta la próxima, cuñado!");
+                        break;
+                    }
+
+                    // Se leen los datos que deveulve el server
+                    String toret = dis.readUTF();
+                    System.out.println(toret);
+
                     // En caso de introducir mal un dato numérico, se avisa al usuario y se devuelve el menú de nuevo
                 } catch (NumberFormatException e) {
                     System.err.println("\tError en la introducción de datos, subucaba un número no una caderna de texto.");
                 }
-
-                // Se envian los datos al server
-                dos.writeUTF(mensaje);
-                dos.writeDouble(num);
-
-//                System.out.println("Mensaje enviado: " + mensaje + " num: " + num);
-//                double result = dis.readDouble();
-
-                // Se leen los datos que deveulve el server
-                String toret = dis.readUTF();
-                System.out.println(toret);
-
             }
 
             // Cerrando el socket del cliente
