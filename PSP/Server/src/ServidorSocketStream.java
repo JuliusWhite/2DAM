@@ -60,6 +60,8 @@ public class ServidorSocketStream {
                             toret = "Si pagas " + num + "€/l de gasolina estás pagando " + df.format(result) + "€/l de más.";
                         } else toret = "Eso es imposible, yo conozco la gasolinera más barata de Vigo!";
                         break;
+                    case "exit":
+                        break;
 
                     default:
                         System.err.println("Error de introducción");

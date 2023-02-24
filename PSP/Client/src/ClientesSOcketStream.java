@@ -70,26 +70,25 @@ public class ClientesSOcketStream {
                             System.out.println("Por favor, introduzca el precio de gasolina que desea comparar con la más barata de Vigo(1.519€/l):");
                             num = Double.parseDouble(sc.nextLine());
                             break;
+                        case "exit":
+                            System.out.println("Hasta la próxima, cuñado!");
+                            break;
 
                         default:
                             System.out.print("Opción no encontrada. Recuerde que para abandonar el programa debe introducir 'exit'.");
                             num = 0;
                             break;
-
                     }
 
-                    // Se envian los datos al server
-                    dos.writeUTF(mensaje);
-                    dos.writeDouble(num);
+                        // Se envian los datos al server
+                        dos.writeUTF(mensaje);
+                        dos.writeDouble(num);
 
-                    if (mensaje.equals("exit")){
-                        System.out.println("Hasta la próxima, cuñado!");
-                        break;
-                    }
+                        if (mensaje.equals("exit")) break;
 
-                    // Se leen los datos que deveulve el server
-                    String toret = dis.readUTF();
-                    System.out.println(toret);
+                        // Se leen los datos que deveulve el server
+                        String toret = dis.readUTF();
+                        System.out.println(toret);
 
                     // En caso de introducir mal un dato numérico, se avisa al usuario y se devuelve el menú de nuevo
                 } catch (NumberFormatException e) {
