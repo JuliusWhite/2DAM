@@ -1,10 +1,10 @@
 ## Servidor Odoo con PostgreSQL, levantado con docker.
 
-Primero se instala el postgresSQL en el equipo en caso de ser necesario. Una vez instalado, se comprueba el funcionamiento de ls servicios de postgresSQL con el siguiente comando: **sudo netstat -putan | grep post**.
+Primero se instala el postgresSQL en el equipo en caso de ser necesario. Una vez instalado, se comprueba el funcionamiento de ls servicios de postgresSQL con el siguiente comando: `sudo netstat -putan | grep post`.
 
 ![Screenshot from 2023-01-13 12-32-29](https://user-images.githubusercontent.com/91659331/212311657-15da7a77-64fb-45fd-a138-ad0fa95bd358.png)
 
-En caso de que sea necesario. se ejecuta **service postgresql stop** para parar los servicios activos de postgres.
+En caso de que sea necesario. se ejecuta `service postgresql stop` para parar los servicios activos de postgres.
 
 Se genera un nuevo directorio de trabajo y se crea dentro el archivo 'docker-compose.yml', el cual levantara el nyuevo servidor Odoo.
 
@@ -24,7 +24,7 @@ Se desplegará una ventana como la siguiente, donde se deben rellenar los datos 
 
 ![imagen](https://user-images.githubusercontent.com/91659331/212314086-829186f9-fd3c-42fa-8e44-41a28ff8469c.png)
 
-Si da algún error debemos parar los servicios de postgresql en la terminal de sistema operativo y volver a ejecutar el docker-compose up. En caso contrario deberemos ver lo siguiente:
+Si da algún error debemos parar los servicios de postgresql en la terminal de sistema operativo y volver a ejecutar el `docker-compose up`. En caso contrario deberemos ver lo siguiente:
 
 ![Screenshot from 2023-01-13 12-58-52](https://user-images.githubusercontent.com/91659331/212316417-b28a8d08-0816-4d18-99b0-9aab09ba5bc7.png)
 
