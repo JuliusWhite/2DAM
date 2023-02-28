@@ -1,5 +1,6 @@
 package org.example;
 
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
@@ -40,12 +41,12 @@ public class ConnectToDB {
             System.out.println("Document inserted successfully");
             System.out.println();
         } catch (Exception e) {
-            System.out.println("\t_id: 11 already added");
+            System.out.println("\n\t_id: 11 already added");
         }
 
-        collection.updateOne(Filters.eq("_id", 11), Updates.set("puntuacion", 10));
-        System.out.println("Document update successfully...");
-        System.out.println();
+//        collection.updateOne(Filters.eq("_id", 11), Updates.set("puntuacion", 10));
+//        System.out.println("Document update successfully...");
+//        System.out.println();
 
         // Deleting the documents'
 //        collection.deleteOne(Filters.eq("_id", 12));
@@ -55,7 +56,7 @@ public class ConnectToDB {
         FindIterable<Document> iterDoc = collection.find();
 
         // Getting the iterator
-        System.out.println("·Showing all documents");
+        System.out.println("\n·Showing all documents");
         Iterator<Document> it = iterDoc.iterator();
         while (it.hasNext()) {
             System.out.println(it.next());
@@ -63,21 +64,36 @@ public class ConnectToDB {
         System.out.println();
 
         // Showing databases
-        System.out.println("·Showing all collectins");
-        for (String name : database.listCollectionNames()) {
-            System.out.println("\t" + name);
-        }
-        System.out.println();
+//        System.out.println("·Showing all collectins");
+//        for (String name : database.listCollectionNames()) {
+//            System.out.println("\t" + name);
+//        }
+//        System.out.println();
 
         System.out.println("·Showing all examns where 'exam' equals 'teoria'");
-        BasicDBObject whereQuery = new BasicDBObject();
-        BasicDBObject fields = new BasicDBObject();
-        whereQuery.put("exame", "teoria");
-        fields.put("_id", 0);
-        iterDoc = collection.find(whereQuery).projection(fields);
+        Document filter = new Document("exame", "teoria");
+        Document fields = new Document("_id", 0);
+//        BasicDBObject whereQuery = new BasicDBObject();
+//        BasicDBObject fields = new BasicDBObject();
+//        whereQuery.put("exame", "teoria");
+//        fields.put("_id", 0);
+        iterDoc = collection.find(filter).projection(fields);
         it = iterDoc.iterator();
         while (it.hasNext()) {
             System.out.println(it.next());
+        }
+
+        System.out.println("\n·Increassing by 2 the puntuation of the student 40 where the examen is test.");
+        // Update the documents matching the filter
+        filter = new Document("exame", "test").append("estudiante", 40);
+        Document update = new Document("$inc", new Document("puntuacion", 2));
+        UpdateResult result = collection.updateMany(filter, update);
+
+        filter = new Document("estudiante", 40).append("exame", "test");
+        iterDoc = collection.find(filter).projection(fields);
+        it = iterDoc.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next().toJson());
         }
 
     }
