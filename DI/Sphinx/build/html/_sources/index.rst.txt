@@ -10,6 +10,8 @@ Welcome to Sphinx's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   exeampleRestructureText
+
 
 
 Indices and tables
