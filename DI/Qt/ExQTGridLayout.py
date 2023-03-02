@@ -11,9 +11,12 @@ class Example(QMainWindow):
         self.setWindowTitle("ExGridLayout")
 
         grid = QGridLayout()
-        grid.addWidget(QLineEdit(), 0, 0, 1, 3)  # 0,0 is ppsition en 1,3 is expansion, 1 row, 3 cols
+        self.qline = QLineEdit()
+        grid.addWidget(self.qline, 0, 0, 1, 3)  # 0,0 is position en 1,3 is expansion, 1 row, 3 cols
 
-        grid.addWidget(QPushButton('1'), 1, 0)
+        self.btn1 = QPushButton('1')
+
+        grid.addWidget(self.btn1, 1, 0)
         grid.addWidget(QPushButton('2'), 1, 1)
         grid.addWidget(QPushButton('3'), 1, 2)
         grid.addWidget(QPushButton('4'), 2, 0)
@@ -59,11 +62,16 @@ class Example(QMainWindow):
         # # control.setLayout(operatorKeyboard)
         # # boxH.addWidget(control)
 
+        self.btn1.pressed.connect(self.on_1_pressed)
+
         container = QWidget()
         container.setLayout(grid)  ## or (boxH)
         self.setCentralWidget(container)
 
         self.show()
+
+    def on_1_pressed(self):
+        self.qline.setText(self.qline.text() + "1")
 
 
 if __name__ == '__main__':
