@@ -10,8 +10,8 @@ public class Main {
         // Adding data for the following querys
         String code = "p2";
         String desc = "piso";
-        String city = "Lugo";
         int prize = 14;
+        String city = "Lugo";
         int cp = 36452;
 
         // First query, insert a row in produtos, next there's a try catch in case the row was already added
@@ -33,6 +33,7 @@ public class Main {
 
         // Finally, show all the rows in the table
         ResultSet rs = s.executeQuery("select produtos, (ci).cidade, (ci).cp from produtos");
+        System.out.println();
         while (rs.next()) {
             System.out.println("Produto:" + rs.getString(1) + ", cidade:" + rs.getString(2) + ", cp:" + rs.getInt(3));
         }
