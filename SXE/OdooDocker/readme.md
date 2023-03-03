@@ -21,3 +21,7 @@
 'python:3' la imagen de la que se creará el contenedor
 
 'python script.py' es el comando para ejecutar dentro del contenedor
+
+---
+
+En caso de errores debemso atender a la consola, la cual explicará en que consisten. Si los contenedores docker está ocupados debe cambiartse el nombre dfel nuevo contenedor o eliminar el anterior usando `docker rm (nombre o id del conteiner)`. Si da problemas sobre postgres, se debe para el servicio ejecutando `service postgresql stop`
