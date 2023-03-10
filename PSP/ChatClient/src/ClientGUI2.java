@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 import javax.swing.*;
 
-public class ClientGUI extends JFrame implements ActionListener {
+public class ClientGUI2 extends JFrame implements ActionListener {
     private JLabel mensajeLabel;
     private JTextField mensajeTextField;
     private JButton sendButton;
@@ -13,7 +13,7 @@ public class ClientGUI extends JFrame implements ActionListener {
     private DataOutputStream dos;
     private DataInputStream dis;
 
-    public ClientGUI(String title) {
+    public ClientGUI2(String title) {
         super(title);
 
         // Creando los componentes gráficos
@@ -70,7 +70,7 @@ public class ClientGUI extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        ClientGUI client = new ClientGUI("Cliente 1");
+        ClientGUI client = new ClientGUI("Cliente 2");
         client.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         client.pack();
         client.setVisible(true);

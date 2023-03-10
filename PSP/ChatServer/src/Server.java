@@ -6,9 +6,10 @@ import java.net.Socket;
 public class Server {
 
     static int cont = 0;
+
     public static void main(String[] args) {
-        try{
-// Abriendo el socket del cliente
+        try {
+            // Abriendo el socket del cliente
             System.out.println("Creando socket servidor");
             ServerSocket serverSocket = new ServerSocket();
 
@@ -23,10 +24,10 @@ public class Server {
                 System.out.println("Conexión recibida");
                 cont++;
 
-                System.out.println("New client connected: " + clienteSocket.getInetAddress().getHostAddress());
+                System.out.println("Nuevo cliente conectado: " + clienteSocket.getInetAddress().getHostAddress());
 
-                // Create a new thread for the client
-                MyThread thread = new MyThread(String.valueOf(cont) ,clienteSocket);
+                // Creando un nuevo hilo por cada nuevo cliente
+                MyThread thread = new MyThread(String.valueOf(cont), clienteSocket);
                 thread.start();
             }
 
