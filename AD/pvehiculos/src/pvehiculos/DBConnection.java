@@ -11,8 +11,8 @@ public class DBConnection {
         String host = "//localhost:"; // tamen poderia ser una ip como "192.168.1.14"
         String porto = "5432";
         String sid = "postgres";
-        String usuario = "julius";
-        String password = "1234";
+        String usuario = "dam2a";
+        String password = "castelao";
         String url = driver + host + porto + "/" + sid;
         Connection conn = DriverManager.getConnection(url, usuario, password);
         return conn;
