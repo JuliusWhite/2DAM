@@ -12,3 +12,125 @@ Type pvehiculos.Vehiculos is not enhanced.
 [2023-03-10 09:16:15 #4 type] 
 Type pvehiculos.Clientes is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-10 14:26:49 #1 store] 
+Database '/home/dam2a/2Dam/AD/Drivers/db/vehicli.odb' has been recovered (tr. 1-4)
+
+[2023-03-10 14:26:49 #2 store] 
+Database '/home/dam2a/2Dam/AD/Drivers/db/vehicli.odb' is opened by 7780@perlanegra17
+
+[2023-03-10 14:26:49 #3 store] 
+Configuration path: ?
+
+[2023-03-10 14:26:49 #4 type] 
+Type pvehiculos.Vehiculos is not enhanced.
+
+[2023-03-10 14:26:49 #5 type] 
+Type pvehiculos.Clientes is not enhanced.
+
+[2023-03-10 14:26:50 #6 store] 
+Database '/home/dam2a/2Dam/AD/Drivers/db/vehicli.odb' is closed by 7780@perlanegra17
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-10 14:27:41 #1 store] 
+Database '/home/dam2a/2Dam/AD/Drivers/db/vehicli.odb' is opened by 7932@perlanegra17
+
+[2023-03-10 14:27:41 #2 store] 
+Configuration path: ?
+
+[2023-03-10 14:27:41 #3 type] 
+Type pvehiculos.Vehiculos is not enhanced.
+
+[2023-03-10 14:27:41 #4 type] 
+Type pvehiculos.Clientes is not enhanced.
+
+[2023-03-10 14:27:42 #5 store] 
+Database '/home/dam2a/2Dam/AD/Drivers/db/vehicli.odb' is closed by 7932@perlanegra17
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-10 14:28:35 #1 store] 
+Database '/home/dam2a/2Dam/AD/Drivers/db/vehicli.odb' is opened by 8020@perlanegra17
+
+[2023-03-10 14:28:35 #2 store] 
+Configuration path: ?
+
+[2023-03-10 14:28:35 #3 type] 
+Type pvehiculos.Vehiculos is not enhanced.
+
+[2023-03-10 14:28:35 #4 type] 
+Type pvehiculos.Clientes is not enhanced.
+
+[2023-03-10 14:28:35 #5 store] 
+Database '/home/dam2a/2Dam/AD/Drivers/db/vehicli.odb' is closed by 8020@perlanegra17
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-10 14:32:23 #1 store] 
+Database '/home/dam2a/2Dam/AD/Drivers/db/vehicli.odb' is opened by 8849@perlanegra17
+
+[2023-03-10 14:32:23 #2 store] 
+Configuration path: ?
+
+[2023-03-10 14:32:23 #3 type] 
+Type pvehiculos.Vehiculos is not enhanced.
+
+[2023-03-10 14:32:23 #4 type] 
+Type pvehiculos.Clientes is not enhanced.
+
+[2023-03-10 14:32:23 #5 store] 
+Database '/home/dam2a/2Dam/AD/Drivers/db/vehicli.odb' is closed by 8849@perlanegra17
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-10 14:33:52 #1 store] 
+Database '/home/dam2a/2Dam/AD/Drivers/db/vehicli.odb' is opened by 8959@perlanegra17
+
+[2023-03-10 14:33:52 #2 store] 
+Configuration path: ?
+
+[2023-03-10 14:33:52 #3 type] 
+Type pvehiculos.Vehiculos is not enhanced.
+
+[2023-03-10 14:33:52 #4 type] 
+Type pvehiculos.Clientes is not enhanced.
+
+[2023-03-10 14:33:52 #5 store] 
+Database '/home/dam2a/2Dam/AD/Drivers/db/vehicli.odb' is closed by 8959@perlanegra17
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-10 14:35:22 #1 store] 
+Database '/home/dam2a/2Dam/AD/pvehiculos/vehicli.odb' is opened by 9109@perlanegra17
+
+[2023-03-10 14:35:22 #2 store] 
+Configuration path: ?
+
+[2023-03-10 14:35:22 #3 type] 
+Type pvehiculos.Vehiculos is not enhanced.
+
+[2023-03-10 14:35:22 #4 type] 
+Type pvehiculos.Clientes is not enhanced.
+
+[2023-03-10 14:35:23 #5 store] 
+Database '/home/dam2a/2Dam/AD/pvehiculos/vehicli.odb' is closed by 9109@perlanegra17
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-10 14:35:39 #1 store] 
+Database '/home/dam2a/2Dam/AD/pvehiculos/vehicli.odb' is opened by 9186@perlanegra17
+
+[2023-03-10 14:35:39 #2 store] 
+Configuration path: ?
+
+[2023-03-10 14:35:39 #3 type] 
+Type pvehiculos.Vehiculos is not enhanced.
+
+[2023-03-10 14:35:39 #4 type] 
+Type pvehiculos.Clientes is not enhanced.
+
+[2023-03-10 14:35:40 #5 store] 
+Database '/home/dam2a/2Dam/AD/pvehiculos/vehicli.odb' is closed by 9186@perlanegra17
+

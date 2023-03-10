@@ -28,7 +28,7 @@ public class Main {
         System.out.println();
 
         // Connecting to vehicli.odb
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("$objectdb/db/vehicli.odb");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("vehicli.odb");
         EntityManager em = emf.createEntityManager();
 
         // Retriving vehiculos into vehiculos.java
@@ -36,12 +36,18 @@ public class Main {
         TypedQuery<Vehiculos> query =
                 em.createQuery("SELECT v FROM Vehiculos v", Vehiculos.class);
         List<Vehiculos> resultv = query.getResultList();
+        for (Vehiculos v: resultv) {
+            System.out.println(v);
+        }
 
         // Retriving clientes into clientes.java
         System.out.println("\nobxectos tipo Clientes.java\n");
         TypedQuery<Clientes> queryc =
                 em.createQuery("SELECT c FROM Clientes c", Clientes.class);
         List<Clientes> resultc = queryc.getResultList();
+        for (Clientes c: resultc) {
+            System.out.println(c);
+        }
 
         // Getting the iterable object
         FindIterable<Document> iterDoc = collection.find();
