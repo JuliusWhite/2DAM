@@ -1,0 +1,96 @@
+nome do proxecto: Pexemploav2  ( debe chamarse asi)
+
+dispomos das seguintes bases de datos:
+
+1) postgres : para crear o tipo e a taboa que se describe a continuacion tes que lanzar o script creainformaticospostgres.sql  . 
+
+tipo:  tipo_fillos,   con dous campos :
+homes numeric
+mulleres numeric
+
+taboa:  informaticos,   con tres campos :
+cinf  numeric
+dniinf varchar(4)
+fillos tipo_fillos
+
+taboa finalinf , con dous campos:
+cinf numeric
+salariototal numeric
+
+as filas inseridas na taboa informaticos son
+cinf 	dniinf 	fillos 
+1  	'361'	tipo_fillos(0,0)
+2  	'365'	tipo_fillos(0,1)
+3	'367'	tipo_fillos(1,1)
+4	'3610'	tipo_fillos(0,0)
+5	'3612'	tipo_fillos(1,2)
+
+2 ) mongodb 
+no cliente mongo debes copiar e pegar o contido non comentado  do script creaempretodosmongo
+
+isto creatra dentro da base -test- a colecion -empretodos- cos seguintes documentos:
+( nota: ten en conta que se tes que ler os datos sb e phe de calquera fila estes son de tipo Double.)
+
+{dnie:"361",sb:1000,phe:20,che:"a"}
+{dnie:"362",sb:2000,phe:30,che:"b"}
+{dnie:"363",sb:3000,phe:30,che:"c"}
+{dnie:"364",sb:2000,phe:20,che:"d"}
+{dnie:"365",sb:800,phe:25,che:"e"}
+{dnie:"366",sb:1500,phe:20,che:"f"}
+{dnie:"367",sb:2000,phe:30,che:"g"}
+{dnie:"368",sb:1000,phe:25,che:"h"}
+{dnie:"369",sb:1000,phe:20,che:"p"}
+{dnie:"3610",sb:1200,phe:25,che:"i"}
+{dnie:"3611",sb:3000,phe:30,che:"j"}
+{dnie:"3612",sb:1200,phe:30,che:"k"}
+{dnie:"3613",sb:2500,phe:30,che:"l"}
+{dnie:"3614",sb:1300,phe:40,che:"m"}
+{dnie:"3615",sb:1000,phe:25,che:"n"}
+
+3) objectdb
+acheganse dous ficheiros:
+3a) Horasextra.java : crea a clase Horasextra  
+
+3b) -horasextratodos.odb- que conten obxectosda clase Horasextra . 
+
+os obxectos contidos tenhen os seguintes valores nos seus atributos: 
+che (String)	nhe(int)
+a		10
+b		0
+c		0
+d		20
+e		10
+f		5
+g		0
+h		0
+i		10
+j		15
+k		20
+l		0
+m		10
+n		0
+p		10
+
+
+
+PROXECTO  Pexemploav2
+
+Para cada informatico da taboa postgres -informaticos- que cumpla que o numero de fillos totais  (homes+mulleres) e maior que 0 debe :
+inserir dito   informatico  na taboa   finalinf gardando o seu -cinf- e o -salariototal- de dito empregado sabendo que o salario total se calcula asi:
+
+salario total= sb+phe*nhe+ nh*100
+(sendo nh o numero total de fillos do informatico)
+
+sabendo que:
+os valores -sb- e -phe- de cada informatico  atopanse
+na base mongo -test- colecion -empretodos-  na fila que ten por -dnie- o -dniinf- do informatico .
+
+o valor -nhe- atopase na base objectdb -horasestratodos.odb- e corresponde a un obxecto da clase -Horasextra- que ten por valor do atributo -che- o valor correspondente ao valor -che- da mesma fila da colecion -empretodos-  mencionada no  parrafo anterior.   
+ 
+o contido da taboa finalinf cando remate o proxecto  debe ser o seguinte
+
+cinf     salariototal
+  2		1150.0
+  3		2200.0
+  5		2100.0
+  
