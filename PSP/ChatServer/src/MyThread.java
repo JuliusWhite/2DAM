@@ -7,7 +7,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class MyThread extends Thread {
-    private Socket clienteSocket;
+    private final Socket clienteSocket;
 
     public MyThread(String name, Socket clienteSocket) {
         super(name);
@@ -17,69 +17,44 @@ public class MyThread extends Thread {
     @Override
     public void run() {
         try {
-            System.out.println("\nCreando el hilo " + getName() + "\n");
+            System.out.println("\nCreando el hilo " + getName());
 
-            // Instanciación de data input y output stream, ya que es más fácil trabajar con strings y doubles que con arreglos de bytes
+            // Instanciación de data input y output stream, ya que es más fácil trabajar con strings que con arreglos de bytes
             DataInputStream dis = new DataInputStream(clienteSocket.getInputStream());
             DataOutputStream dos = new DataOutputStream(clienteSocket.getOutputStream());
 
             String mensaje;
-            while (true) {
+            do {
                 mensaje = dis.readUTF();
                 System.out.println("\nMensaje cliente " + getName() + ": " + mensaje);
 
-                String toret = "";
+                String toret;
                 switch (mensaje.toLowerCase()) {
-
-                    case "hello world":
-                    case "hello":
-                    case "hi":
-                        toret = "Hi, client!";
-                        break;
-
-                    case "hola":
-                    case "hola!":
-                        toret = "Hola, cliente!";
-                        break;
-
-                    case "que hora es?":
-                    case "que hora es":
-                    case "what time is it?":
-                    case "what time is it":
+                    case "hello world", "hello", "hi" -> toret = "Hi, client!";
+                    case "hola", "hola!" -> toret = "Hola, cliente!";
+                    case "que hora es?", "que hora es", "what time is it?", "what time is it" -> {
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-
                         LocalTime today = LocalTime.now();
-
                         toret = today.format(formatter);
-                        break;
-
-                    case "que día es hoy?":
-                    case "que día es hoy":
-                    case "que dia es hoy?":
-                    case "que dia es hoy":
-                    case "what day is it today?":
-                    case "what day is it today":
-                        toret = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString();
-                        break;
-
-                    default:
-                        toret = "Error de introducción";
-                        break;
-
-                    case "exit":
-                    case "salir":
+                    }
+                    case "que día es hoy?", "que día es hoy", "que dia es hoy?", "que dia es hoy", "what day is it today?", "what day is it today" ->
+                            toret = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+                    default -> toret = "Error de introducción";
+                    case "exit", "bye", "goodbye" -> {
                         toret = "exit";
-                        break;
+                        mensaje = "exit";
+                    }
+                    case "salir", "adios", "adiós" -> {
+                        toret = "salir";
+                        mensaje = "exit";
+                    }
                 }
 
                 System.out.println("Respuesta: " + toret);
 
                 dos.writeUTF(toret);
 
-                if (mensaje.equals("exit")) {
-                    break;
-                }
-            }
+            } while (!mensaje.equals("exit"));
             // Cerrando datastreams y el socket del cliente
             dis.close();
             dos.close();

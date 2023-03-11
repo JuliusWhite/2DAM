@@ -24,7 +24,7 @@ public class Server {
                 System.out.println("Conexión recibida");
                 cont++;
 
-                System.out.println("Nuevo cliente conectado: " + clienteSocket.getInetAddress().getHostAddress());
+                System.out.println("\nNuevo cliente conectado: " + clienteSocket.getInetAddress().getHostAddress());
 
                 // Creando un nuevo hilo por cada nuevo cliente
                 MyThread thread = new MyThread(String.valueOf(cont), clienteSocket);

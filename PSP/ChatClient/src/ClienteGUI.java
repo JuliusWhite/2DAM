@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 import javax.swing.*;
 
-public class ClientGUI extends JFrame implements ActionListener {
+public class ClienteGUI extends JFrame implements ActionListener {
     private JLabel mensajeLabel;
     private JTextField mensajeTextField;
     private JButton sendButton;
@@ -13,7 +13,7 @@ public class ClientGUI extends JFrame implements ActionListener {
     private DataOutputStream dos;
     private DataInputStream dis;
 
-    public ClientGUI(String title) {
+    public ClienteGUI(String title) {
         super(title);
 
         // Creando los componentes gráficos
@@ -24,7 +24,7 @@ public class ClientGUI extends JFrame implements ActionListener {
         mensajeArea = new JTextArea(10, 20);
         mensajeArea.setEditable(false);
 
-        // Añadir los componentes a la GUI
+        // Añadir los componentes a la GUI, primero se crea el panel par añadir los componentes
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(2, 2));
         panel.add(mensajeLabel);
@@ -38,7 +38,7 @@ public class ClientGUI extends JFrame implements ActionListener {
         try {
             socket = new Socket("localhost", 5555);
 
-            // Instanciación de data input y output stream, ya que es más fácil trabajar con strings y doubles que con arreglos de bytes
+            // Instanciación de data input y output stream, ya que es más fácil trabajar con strings que con arreglos de bytes
             dis = new DataInputStream(socket.getInputStream());
             dos = new DataOutputStream(socket.getOutputStream());
 
@@ -47,6 +47,7 @@ public class ClientGUI extends JFrame implements ActionListener {
         }
     }
 
+    // Método que se acciona cuando el listener del boton enviar es pulsado
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() == sendButton) {
             // Se envian los datos al server
@@ -58,11 +59,13 @@ public class ClientGUI extends JFrame implements ActionListener {
 
                 // Leyendo datos del server
                 String serverMsg = dis.readUTF();
-                if (serverMsg.equals("exit")) {
+                if (serverMsg.equals("salir")) {
                     mensajeArea.append("Server desconectado, adiós cliente\n\n");
+                } else if (serverMsg.equals("exit")) {
+                    mensajeArea.append("Server desconectesd, bye client\n\n");
                 } else mensajeArea.append("Server: " + serverMsg + "\n\n");
             } catch (IOException e) {
-                mensajeArea.append("Server desconectado.\n");
+                mensajeArea.append("Server desconectado.\n\n");
                 throw new RuntimeException(e);
             }
             mensajeTextField.setText("");
@@ -70,7 +73,7 @@ public class ClientGUI extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        ClientGUI client = new ClientGUI("Cliente 1");
+        ClienteGUI client = new ClienteGUI("Cliente 1");
         client.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         client.pack();
         client.setVisible(true);
