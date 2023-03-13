@@ -39,7 +39,6 @@ public class MyThread extends Thread {
                     }
                     case "que día es hoy?", "que día es hoy", "que dia es hoy?", "que dia es hoy", "what day is it today?", "what day is it today" ->
                             toret = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-                    default -> toret = "Error de introducción";
                     case "exit", "bye", "goodbye" -> {
                         toret = "exit";
                         mensaje = "exit";
@@ -48,6 +47,7 @@ public class MyThread extends Thread {
                         toret = "salir";
                         mensaje = "exit";
                     }
+                    default -> toret = "Error de introducción";
                 }
 
                 System.out.println("Respuesta: " + toret);
