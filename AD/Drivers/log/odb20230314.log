@@ -1,0 +1,28 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-14 10:44:41 #1 store] 
+Database '/home/dam2a/2Dam/AD/pvehiculos/vehicli.odb' is opened by 12012@perlanegra17
+
+[2023-03-14 10:44:41 #2 store] 
+Configuration path: ?
+
+[2023-03-14 10:44:41 #3 type] 
+Type pvehiculos.Vehiculos is not enhanced.
+
+[2023-03-14 10:44:41 #4 type] 
+Type pvehiculos.Clientes is not enhanced.
+
+[2023-03-14 10:44:44 #5 store] 
+Database '/home/dam2a/2Dam/AD/pvehiculos/vehicli.odb' is closed by 12012@perlanegra17
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-14 10:51:03 #1 store] 
+Database '/home/dam2a/2Dam/AD/Pexemploav2/horasextratodos.odb' is opened by 12799@perlanegra17
+
+[2023-03-14 10:51:03 #2 store] 
+Configuration path: ?
+
+[2023-03-14 10:51:03 #3 type] 
+Type pexemploav2.Horasextra is not enhanced.
+
